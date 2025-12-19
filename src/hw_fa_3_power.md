@@ -9,5 +9,13 @@
 - 3.3V optics power rails have been scoped and associated circuits reviewed; no issues found so far.
 - Attempts to force link flaps on an RMA QFX5240 by injecting noise have not been successful.
 
+
 ## Next Steps
 - Instrument QFX5240 in SysTest replication test-bed with probes and attempt to replicate link flaps.
+
+### Probe Status (Dec 19, 2025)
+- Scope data shows no major abnormality on the voltage rails probed.
+- Probing 3V3 to port 2, 3V3 for Group3 (parent power net for ports 0-21), 12V Vin_4 (parent for this 3V3), and current through the 12V zone 4.
+
+![Probe status Dec 19 2025](images/Probe-status-dec19-2025.png)
+

@@ -12,4 +12,9 @@
   - 22x 800G AEC to QFX5240-64QD
   - 28x 800G OSFP 800G DR8 to QFX5240-64OD
 
-![Systest repro summary](images/systest_repro_summary.png)
+
+## Repro with Probes Attached - Dec/19/2025
+### Amber logs from server
+
+![Probe status Dec 19 2025](images/Server-amber-logs-dec19-2025.png)
+
