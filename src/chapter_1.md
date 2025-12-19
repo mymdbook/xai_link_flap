@@ -1,5 +1,15 @@
 # XAI Link Flap Escalation
 
+## Log Location
+- /volume/CSdata/amodh/2025-1014-899718
+
+## Problem Statement
+- All server facing ports (port 0-35) are flapping at the same time and recover in approx. 12 seconds. The issue started Oct 13 and is seen on more than 11 devices so far (11 out of 700+).
+- Server facing ports use AEC cables - Y cables (800G <-> 2x400G). The uplink ports (p36 to 63) with DR8 optics do not see flaps.
+- This issue was never reported in Mem-1 or Colossus-1.
+- Each time a port flap is seen, the switch receives a LOS (Loss of Signal).
+
+
 ## Initial Findings
 - At 16:29:41 UTC on Dec 14, every front-panel AEC port `et-0/0/0` through `et-0/0/35` was driven to harddown by PFE linkscan (local fault) within the same second; see `memy-cca-as1-1/memy-cca-journal-14-Dec.txt` where each IFD flips `harddown:0 -> 1` and SNMP trap `LINK_DOWN` fires. They recovered together at ~16:37:08 when the same interfaces clear `harddown:1 -> 0` in the same file. No FPC/PFE reset messages in the window, only mass link faults on these ports.
 - Switch-side port detail for one affected lane shows Rx LOS/LOCAL-FAULT during the event and a few uncorrected FECs when it flapped (for example, `memy-cca-as1-1/interface_flap.txt` for `et-0/0/17` shows `Device flags: ... Transceiver-Rx-LOS`, `Active defects: LINK, LOCAL-FAULT`, `FEC Uncorrected Errors: 12`, last flapped 16:29:42).
@@ -17,13 +27,6 @@
 - If the 16:29 window coincided with maintenance, avoid running anything that toggles all AECs; otherwise open a vendor/RMA case for the Credo AEC batch with the above evidence.
 - Keep `memy-cca-.../cca_logs` collection handy for the next occurrence; if it repeats, consider moving critical traffic off ports 0-35 until the AEC issue is cleared.
 
-## Problem Statement
-- All server facing ports (port 0-35) are flapping at the same time and recover in approx. 12 seconds. The issue started Oct 13 and is seen on more than 11 devices so far (11 out of 700+).
-- Server facing ports use AEC cables - Y cables (800G <-> 2x400G). The uplink ports (p36 to 63) with DR8 optics do not see flaps.
-- This issue was never reported in Mem-1 or Colossus-1.
-- Each time a port flap is seen, the switch receives a LOS (Loss of Signal).
-
-![Problem statement diagram](images/problem_statement.png)
 
 ## Auto Negotiation Notes
 - Credo confirmed auto negotiation for AEC cables should be turned off on both sides (switch and server).
@@ -32,7 +35,6 @@
 - In the lab, link flaps were observed when auto negotiation was enabled or disabled.
 - Can auto negotiation be disabled on a sample configuration?
 
-![Auto negotiation note](images/auto_negotiation.png)
 
 ## Purpose
 - Capture what happened during the link flap escalation and why it mattered to xAI reliability.
