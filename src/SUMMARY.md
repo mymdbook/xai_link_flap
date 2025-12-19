@@ -1,8 +1,14 @@
 # Summary
 
 - [Overview](./chapter_1.md)
-- [Impact and Detection](./impact_detection.md)
-- [Timeline](./timeline.md)
+- [Systest Repro Summary](./systest_repro_summary.md)
+  - [Overview](./systest_repro_overview.md)
+  - [Systest Lab Images](./sd_lab_photos.md)
+  - [Systest Topology](./systest_topology.md)
+
+- [HW Engineering Summary](./hw_engineering_summary.md)
+  - [HW FA #1 - Optics (ODVT) Testing for AEC on QFX5240](./hw_fa_1_optics.md)
+  - [HW FA #2 - Bad Batch Investigation](./hw_fa_2_bad_batch.md)
+  - [HW FA #3 - Power](./hw_fa_3_power.md)
+  - [HW FA #4 - Timing](./hw_fa_4_timing.md)
 - [Remediation and Root Cause](./remediation.md)
-- [Systest Lab Images](./sd_lab_photos.md)
-- [Systest Topology](./systest_topology.md)
