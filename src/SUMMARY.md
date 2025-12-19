@@ -13,4 +13,8 @@
   - [HW FA #4 - Timing](./hw_fa_4_timing.md)
 - [Troubleshooting](./troubleshooting.md)
   - [Log Collection Script](./log_collection_script.md)
+    - [QFX5240 Script](./log_collection_script.md#qfx5240-script)
+    - [Event-Options Config](./log_collection_script.md#event-options-config)
+    - [Server Logs - BF3 NIC](./log_collection_script.md#server-logs---bf3-nic)
+    - [Stress Testing](./log_collection_script.md#stress-testing)
 - [Remediation and Root Cause](./remediation.md)
