@@ -1,0 +1,1043 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Verification Logs - xai_link_flap</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-5d7b192b.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a7b7916a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">xai_link_flap</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h2 id="repro-with-probes-attached---dec192025"><a class="header" href="#repro-with-probes-attached---dec192025">Repro with Probes Attached - Dec/19/2025</a></h2>
+<h3 id="amber-logs-from-server"><a class="header" href="#amber-logs-from-server">Amber logs from server</a></h3>
+<p><img src="images/Server-amber-logs-dec19-2025.png" alt="Probe status Dec 19 2025"></p>
+<h2 id="system-overview"><a class="header" href="#system-overview">System Overview</a></h2>
+<h3 id="cli-summary"><a class="header" href="#cli-summary">CLI Summary</a></h3>
+<pre><code>
+- EVO Version: 			show version 
+- FA Chassis details: 		show chassis hardware detail 
+- Fan Speed: 			show chassis fan 
+- System Environment: 		show chassis environment no-forwarding 
+- Temperature Threshold: 	show chassis enhanced-temperature-thresholds  
+- AEC Optics Info: 		show picd optics fpc_slot 0 pic_slot 0 port 0 cmd info 
+- DR8 Optics Info : 		show picd optics fpc_slot 0 pic_slot 0 port 40 cmd info
+- AEC Advertised Speed: 	show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 0 cmd advertised_applications 
+- DR8 Advertised Speed: 	show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 40 cmd advertised_applications   
+- Server NIC: 			lshw -c net -businfo
+- LLDP Neighbor: 		show lldp neighbors   
+</code></pre>
+<h3 id="cli-output"><a class="header" href="#cli-output">CLI Output</a></h3>
+<pre><code>root@xai-qfx5240-01&gt; show version 
+Hostname: xai-qfx5240-01
+Model: qfx5240-64od
+Junos: 23.4X100-D40.7-EVO
+Yocto: 3.0.2
+Linux Kernel: 5.2.60-yocto-standard-g72d147e
+JUNOS-EVO OS 64-bit [junos-evo-install-qfx-ms-x86-64-23.4X100-D40.7-EVO]
+
+root@xai-qfx5240-01&gt; show chassis hardware detail 
+Hardware inventory:
+Item             Version  Part number  Serial number     Description
+Chassis                                AO40023030        QFX5240-64OD
+PSM 0                                  6U6LX010130122W   AC AFO 3000W PSU
+PSM 1                                  6U6LX010130124P   AC AFO 3000W PSU
+Routing Engine 0          BUILTIN      BUILTIN           RE-QFX5240
+  nvme0 480103 MB  EPM3750-M8480GB5    511240703133000269 NVMe Solid State Disk
+  nvme1 480103 MB  EPM3750-M8480GB5    511240703133001074 NVMe Solid State Disk
+CB 0             REV 03   650-175147   AO40023030        QFX5240-64OD
+FPC 0                     BUILTIN      BUILTIN           QFX5240-64OD
+  PIC 0                   BUILTIN      BUILTIN           64X800G-OSFP
+    Xcvr 0       XXXX     NON-JNPR     BL8J4455150007V   UNKNOWN
+    Xcvr 1       XXXX     NON-JNPR     BL8J44551500031   UNKNOWN
+    Xcvr 2       XXXX     NON-JNPR     BL8J45X5150012J   UNKNOWN
+    Xcvr 3       XXXX     NON-JNPR     BL8J4455150000B   UNKNOWN
+    Xcvr 4       XXXX     NON-JNPR     BL8J435539000XH   UNKNOWN
+    Xcvr 5       XXXX     NON-JNPR     BL8J435539001U4   UNKNOWN
+    Xcvr 6       XXXX     NON-JNPR     BL8J43X5440009W   UNKNOWN
+    Xcvr 7       XXXX     NON-JNPR     BL8J43X544000BU   UNKNOWN
+    Xcvr 8       XXXX     NON-JNPR     BL8J4355390012C   UNKNOWN
+    Xcvr 9       XXXX     NON-JNPR     BL8J45X5150017N   UNKNOWN
+    Xcvr 10      XXXX     NON-JNPR     BL8J44X515002M7   UNKNOWN
+    Xcvr 11      XXXX     NON-JNPR     BL8J435539001RL   UNKNOWN
+    Xcvr 12      XXXX     NON-JNPR     BL8J45X5150000W   UNKNOWN
+    Xcvr 13      XXXX     NON-JNPR     BL8J45X51500173   UNKNOWN
+    Xcvr 14      XXXX     NON-JNPR     BL8J4455150008U   UNKNOWN
+    Xcvr 15      XXXX     NON-JNPR     BL8J45X515000TU   UNKNOWN
+    Xcvr 16      XXXX     NON-JNPR     BL8J44X51500272   UNKNOWN
+    Xcvr 17      XXXX     NON-JNPR     BL8J44X51500254   UNKNOWN
+    Xcvr 18      XXXX     NON-JNPR     BL8J45X5150000F   UNKNOWN
+    Xcvr 19      XXXX     NON-JNPR     BL8J43X544000L0   UNKNOWN
+    Xcvr 20      XXXX     NON-JNPR     BL8J44X5150028X   UNKNOWN
+    Xcvr 21      XXXX     NON-JNPR     BL8J4455150002L   UNKNOWN
+    Xcvr 22      XXXX     NON-JNPR     BL8J4455150004R   UNKNOWN
+    Xcvr 23      XXXX     NON-JNPR     BL8J4455150001D   UNKNOWN
+    Xcvr 24      XXXX     NON-JNPR     BL8J435515000F7   UNKNOWN
+    Xcvr 25      XXXX     NON-JNPR     BL8J4455150006E   UNKNOWN
+    Xcvr 26      XXXX     NON-JNPR     BL8J4455150006G   UNKNOWN
+    Xcvr 27      XXXX     NON-JNPR     BL8J4455150000G   UNKNOWN
+    Xcvr 28      XXXX     NON-JNPR     BL8J43X544000GE   UNKNOWN
+    Xcvr 29      XXXX     NON-JNPR     BL8J44551500061   UNKNOWN
+    Xcvr 30      XXXX     NON-JNPR     BL8J44X515002M4   UNKNOWN
+    Xcvr 31      XXXX     NON-JNPR     BL8J44X515001Y8   UNKNOWN
+    Xcvr 32      XXXX     NON-JNPR     BL8J435515000NZ   UNKNOWN
+    Xcvr 33      XXXX     NON-JNPR     BL8J44X515001K6   UNKNOWN
+    Xcvr 34      XXXX     NON-JNPR     BL8J435539001K2   UNKNOWN
+    Xcvr 35      XXXX     NON-JNPR     BL8J435515000KY   UNKNOWN
+    Xcvr 36      REV 01   740-174932   1G1TK1AA350HD     OSFP-800G-DR8
+    Xcvr 37      REV 01   740-174933   1A1CVWA91100G     OSFP-800G-DR8-P
+    Xcvr 38      REV 01   740-174933   1A1CVWA91102T     OSFP-800G-DR8-P
+    Xcvr 39      REV 01   740-174933   1A1CVWA911007     OSFP-800G-DR8-P
+    Xcvr 40      REV 01   740-174932   1G1TK1AA350AZ     OSFP-800G-DR8
+    Xcvr 41      REV 01   740-174933   1G1TVWA9361T9     OSFP-800G-DR8-P
+    Xcvr 42      REV 01   740-174933   1A1CVWA908009     OSFP-800G-DR8-P
+    Xcvr 43      REV 01   740-174933   1A1CVWA911037     OSFP-800G-DR8-P
+    Xcvr 44      REV 01   740-174933   1A1CVWA911018     OSFP-800G-DR8-P
+    Xcvr 45      REV 01   740-174933   1A1CVWA91101A     OSFP-800G-DR8-P
+    Xcvr 46      REV 01   740-174933   1A1CVWA91104J     OSFP-800G-DR8-P
+    Xcvr 47      REV 01   740-174933   1A1CVWA91101S     OSFP-800G-DR8-P
+    Xcvr 48      REV 01   740-174933   1A1CVWA91100V     OSFP-800G-DR8-P
+    Xcvr 49      REV 01   740-174933   1A1CVWA911014     OSFP-800G-DR8-P
+    Xcvr 50      REV 01   740-174933   1A1CVWA91104L     OSFP-800G-DR8-P
+    Xcvr 51      REV 01   740-174933   1A1CVWA911015     OSFP-800G-DR8-P
+    Xcvr 52      REV 01   740-174932   1G1TK1AA3509S     OSFP-800G-DR8
+    Xcvr 53      REV 01   740-174933   1A1CVWA90901N     OSFP-800G-DR8-P
+    Xcvr 54      REV 01   740-174933   1A1CVWA911019     OSFP-800G-DR8-P
+    Xcvr 55      REV 01   740-174933   1A1CVWA91100W     OSFP-800G-DR8-P
+    Xcvr 56      REV 01   740-174932   1G1TK1A94602E     OSFP-800G-DR8
+    Xcvr 57      REV 01   740-174933   1A1CVWA91101V     OSFP-800G-DR8-P
+    Xcvr 58      REV 01   740-174933   1A1CVWA9090C5     OSFP-800G-DR8-P
+    Xcvr 59      REV 01   740-174933   1A1CVWA91102L     OSFP-800G-DR8-P
+    Xcvr 60      REV 01   740-174933   1A1CVWA911011     OSFP-800G-DR8-P
+    Xcvr 61      REV 01   740-174933   1A1CVWA9090C3     OSFP-800G-DR8-P
+    Xcvr 62      REV 01   740-174933   1A1CVWA91100R     OSFP-800G-DR8-P
+Fan Tray 0                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 1                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 2                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 3                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+
+
+
+root@xai-qfx5240-01&gt; show chassis environment no-forwarding          
+Class Item                           Status     Measurement
+Power PSM 0                          OK         39 degrees C / 102 degrees F
+      PSM 1                          OK         39 degrees C / 102 degrees F
+Temp  FPC 0 Sensor TH5 Max Reading   OK         78 degrees C / 172 degrees F
+      FPC 0 xcvr-0/0/0               OK         50 degrees C / 122 degrees F
+      FPC 0 xcvr-0/0/1               OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/2               OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/3               OK         50 degrees C / 122 degrees F
+      FPC 0 xcvr-0/0/4               OK         53 degrees C / 127 degrees F
+      FPC 0 xcvr-0/0/5               OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/6               OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/7               OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/8               OK         51 degrees C / 123 degrees F
+      FPC 0 xcvr-0/0/9               OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/10              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/11              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/12              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/13              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/14              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/15              OK         51 degrees C / 123 degrees F
+      FPC 0 xcvr-0/0/16              OK         53 degrees C / 127 degrees F
+      FPC 0 xcvr-0/0/17              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/18              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/19              OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/20              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/21              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/22              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/23              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/24              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/25              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/26              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/27              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/28              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/29              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/30              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/31              OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/32              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/33              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/34              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/35              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/36              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/37              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/38              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/39              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/40              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/41              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/42              OK         67 degrees C / 152 degrees F
+      FPC 0 xcvr-0/0/43              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/44              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/45              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/46              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/47              OK         63 degrees C / 145 degrees F
+      FPC 0 xcvr-0/0/48              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/49              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/50              OK         67 degrees C / 152 degrees F
+      FPC 0 xcvr-0/0/51              OK         63 degrees C / 145 degrees F
+      FPC 0 xcvr-0/0/52              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/53              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/54              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/55              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/56              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/57              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/58              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/59              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/60              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/61              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/62              OK         57 degrees C / 134 degrees F
+      FPC 0 MB Middle Right Rear     OK         51 degrees C / 123 degrees F
+      FPC 0 MB Middle Left Rear      OK         52 degrees C / 125 degrees F
+      FPC 0 MB Left Rear             OK         45 degrees C / 113 degrees F
+      FPC 0 MB Left Front            OK         44 degrees C / 111 degrees F
+      FPC 0 MB Right Rear            OK         41 degrees C / 105 degrees F
+      FPC 0 MB Right Front           OK         40 degrees C / 104 degrees F
+      FPC 0 MB OPTICS_GRP1_3V3       OK         51 degrees C / 123 degrees F
+      FPC 0 MB OPTICS_GRP2_3V3       OK         52 degrees C / 125 degrees F
+      FPC 0 MB OPTICS_GRP3_3V3       OK         51 degrees C / 123 degrees F
+      FPC 0 MB VDD_0P75              OK         63 degrees C / 145 degrees F
+      FPC 0 MB TRVDD1_0V9_0V75       OK         52 degrees C / 125 degrees F
+      FPC 0 MB TRVDD0_0V9_0V75       OK         53 degrees C / 127 degrees F
+      FPC 0 FB Exhaust Left          OK         41 degrees C / 105 degrees F
+      FPC 0 FB Exhaust Right         OK         41 degrees C / 105 degrees F
+      Routing Engine 0 CPU Temperature OK       75 degrees C / 167 degrees F
+      Routing Engine 0 Ch-0 DIMM-0 Temp OK      58 degrees C / 136 degrees F
+      Routing Engine 0 Ch-1 DIMM-0 Temp OK      60 degrees C / 140 degrees F
+Fan   Fan Tray 0 Fan 1               OK         12000 RPM
+      Fan Tray 0 Fan 2               OK         11850 RPM
+      Fan Tray 1 Fan 1               OK         12000 RPM
+      Fan Tray 1 Fan 2               OK         12000 RPM
+      Fan Tray 2 Fan 1               OK         12000 RPM
+      Fan Tray 2 Fan 2               OK         12000 RPM
+      Fan Tray 3 Fan 1               OK         12000 RPM
+      Fan Tray 3 Fan 2               OK         12000 RPM
+
+
+root@xai-qfx5240-01&gt; show chassis fan   
+      Item                      Status   % RPM     Measurement
+      Fan Tray 0 Fan 1          OK       89%       12150 RPM                
+      Fan Tray 0 Fan 2          OK       77%       12000 RPM                
+      Fan Tray 1 Fan 1          OK       88%       12000 RPM                
+      Fan Tray 1 Fan 2          OK       77%       12000 RPM                
+      Fan Tray 2 Fan 1          OK       88%       12000 RPM                
+      Fan Tray 2 Fan 2          OK       77%       12000 RPM                
+      Fan Tray 3 Fan 1          OK       88%       12000 RPM                
+      Fan Tray 3 Fan 2          OK       77%       12000 RPM                
+
+root@xai-qfx5240-01&gt; show chassis environment no-forwarding 
+Class Item                           Status     Measurement
+Power PSM 0                          OK         38 degrees C / 100 degrees F
+      PSM 1                          OK         38 degrees C / 100 degrees F
+Temp  FPC 0 Sensor TH5 Max Reading   OK         77 degrees C / 170 degrees F
+      FPC 0 xcvr-0/0/0               OK         50 degrees C / 122 degrees F
+      FPC 0 xcvr-0/0/1               OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/2               OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/3               OK         50 degrees C / 122 degrees F
+      FPC 0 xcvr-0/0/4               OK         53 degrees C / 127 degrees F
+      FPC 0 xcvr-0/0/5               OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/6               OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/7               OK         51 degrees C / 123 degrees F
+      FPC 0 xcvr-0/0/8               OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/9               OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/10              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/11              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/12              OK         51 degrees C / 123 degrees F
+      FPC 0 xcvr-0/0/13              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/14              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/15              OK         51 degrees C / 123 degrees F
+      FPC 0 xcvr-0/0/16              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/17              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/18              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/19              OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/20              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/21              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/22              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/23              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/24              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/25              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/26              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/27              OK         54 degrees C / 129 degrees F
+      FPC 0 xcvr-0/0/28              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/29              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/30              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/31              OK         53 degrees C / 127 degrees F
+      FPC 0 xcvr-0/0/32              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/33              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/34              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/35              OK         52 degrees C / 125 degrees F
+      FPC 0 xcvr-0/0/36              OK         55 degrees C / 131 degrees F
+      FPC 0 xcvr-0/0/37              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/38              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/39              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/40              OK         57 degrees C / 134 degrees F
+      FPC 0 xcvr-0/0/41              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/42              OK         67 degrees C / 152 degrees F
+      FPC 0 xcvr-0/0/43              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/44              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/45              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/46              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/47              OK         63 degrees C / 145 degrees F
+      FPC 0 xcvr-0/0/48              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/49              OK         64 degrees C / 147 degrees F
+      FPC 0 xcvr-0/0/50              OK         67 degrees C / 152 degrees F
+      FPC 0 xcvr-0/0/51              OK         63 degrees C / 145 degrees F
+      FPC 0 xcvr-0/0/52              OK         58 degrees C / 136 degrees F
+      FPC 0 xcvr-0/0/53              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/54              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/55              OK         62 degrees C / 143 degrees F
+      FPC 0 xcvr-0/0/56              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/57              OK         66 degrees C / 150 degrees F
+      FPC 0 xcvr-0/0/58              OK         61 degrees C / 141 degrees F
+      FPC 0 xcvr-0/0/59              OK         56 degrees C / 132 degrees F
+      FPC 0 xcvr-0/0/60              OK         60 degrees C / 140 degrees F
+      FPC 0 xcvr-0/0/61              OK         59 degrees C / 138 degrees F
+      FPC 0 xcvr-0/0/62              OK         57 degrees C / 134 degrees F
+      FPC 0 MB Middle Right Rear     OK         51 degrees C / 123 degrees F
+      FPC 0 MB Middle Left Rear      OK         51 degrees C / 123 degrees F
+      FPC 0 MB Left Rear             OK         45 degrees C / 113 degrees F
+      FPC 0 MB Left Front            OK         44 degrees C / 111 degrees F
+      FPC 0 MB Right Rear            OK         41 degrees C / 105 degrees F
+      FPC 0 MB Right Front           OK         40 degrees C / 104 degrees F
+      FPC 0 MB OPTICS_GRP1_3V3       OK         51 degrees C / 123 degrees F
+      FPC 0 MB OPTICS_GRP2_3V3       OK         52 degrees C / 125 degrees F
+      FPC 0 MB OPTICS_GRP3_3V3       OK         52 degrees C / 125 degrees F
+      FPC 0 MB VDD_0P75              OK         62 degrees C / 143 degrees F
+      FPC 0 MB TRVDD1_0V9_0V75       OK         52 degrees C / 125 degrees F
+      FPC 0 MB TRVDD0_0V9_0V75       OK         52 degrees C / 125 degrees F
+      FPC 0 FB Exhaust Left          OK         41 degrees C / 105 degrees F
+      FPC 0 FB Exhaust Right         OK         41 degrees C / 105 degrees F
+      Routing Engine 0 CPU Temperature OK       76 degrees C / 168 degrees F
+      Routing Engine 0 Ch-0 DIMM-0 Temp OK      57 degrees C / 134 degrees F
+      Routing Engine 0 Ch-1 DIMM-0 Temp OK      60 degrees C / 140 degrees F
+Fan   Fan Tray 0 Fan 1               OK         12000 RPM
+      Fan Tray 0 Fan 2               OK         12000 RPM
+      Fan Tray 1 Fan 1               OK         12000 RPM
+      Fan Tray 1 Fan 2               OK         12000 RPM
+      Fan Tray 2 Fan 1               OK         12000 RPM
+      Fan Tray 2 Fan 2               OK         12000 RPM
+      Fan Tray 3 Fan 1               OK         12000 RPM
+      Fan Tray 3 Fan 2               OK         12000 RPM
+
+
+root@xai-qfx5240-01&gt; show chassis enhanced-temperature-thresholds    
+                                        Fan speed     Fan speed      Yellow alarm          Red alarm      Fire Shutdown
+                                       (degrees C)   (degrees C)      (degrees C)         (degrees C)      (degrees C)
+Item                                  Normal  High   Full  Bad fan    Normal  Bad fan     Normal  Bad fan     Normal
+Routing Engine 0 CPU Temperature          75    85      99     96       101       98        103      100        105
+Routing Engine 0 Ch-0 DIMM-0 Temp         63    70      80     77        82       79         85       82         88
+Routing Engine 0 Ch-1 DIMM-0 Temp         63    70      80     77        82       79         85       82         88
+FPC 0 Sensor TH5 Max Reading              75    80      95     92       100       97        105      102        110
+FPC 0 xcvr-0/0/0                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/1                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/2                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/3                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/4                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/5                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/6                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/7                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/8                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/9                          50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/10                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/11                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/12                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/13                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/14                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/15                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/16                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/17                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/18                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/19                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/20                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/21                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/22                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/23                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/24                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/25                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/26                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/27                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/28                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/29                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/30                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/31                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/32                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/33                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/34                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/35                         50    57      67     67        70       70         75       75         76
+FPC 0 xcvr-0/0/36                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/37                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/38                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/39                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/40                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/41                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/42                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/43                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/44                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/45                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/46                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/47                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/48                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/49                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/50                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/51                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/52                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/53                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/54                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/55                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/56                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/57                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/58                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/59                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/60                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/61                         53    60      70     70        73       73         76       76         77
+FPC 0 xcvr-0/0/62                         53    60      70     70        73       73         76       76         77
+FPC 0 MB Middle Right Rear                45    50      75     72        80       77         85       82         90
+FPC 0 MB Middle Left Rear                 45    50      75     72        80       77         85       82         90
+FPC 0 MB Left Rear                        45    50      75     72        80       77         85       82         90
+FPC 0 MB Left Front                       45    50      75     72        80       77         85       82         90
+FPC 0 MB Right Rear                       45    50      75     72        80       77         85       82         90
+FPC 0 MB Right Front                      45    50      75     72        80       77         85       82         90
+FPC 0 MB OPTICS_GRP1_3V3                  75    80     110    107       115      112        120      117        125
+FPC 0 MB OPTICS_GRP2_3V3                  75    80     110    107       115      112        120      117        125
+FPC 0 MB OPTICS_GRP3_3V3                  75    80     110    107       115      112        120      117        125
+FPC 0 MB VDD_0P75                         75    80     110    107       115      112        120      117        125
+FPC 0 MB TRVDD1_0V9_0V75                  75    80     110    107       115      112        120      117        125
+FPC 0 MB TRVDD0_0V9_0V75                  75    80     110    107       115      112        120      117        125
+FPC 0 FB Exhaust Left                     40    45      60     57        65       62         70       67         75
+FPC 0 FB Exhaust Right                    40    45      60     57        65       62         70       67         75
+
+
+root@xai-qfx5240-01:pfe&gt; show picd optics fpc_slot 0 pic_slot 0 port 0 cmd info 
+
+  PICD optics info
+   fpc_num:         0
+   pic_num:         0
+   port_num:        0
+   run_periodic:    true
+   periodic_ticks:  7507
+   is_diagnostics:  false
+   QSFP_presence:  true
+   is_channelized:  true
+   config_mismatch: false
+   Module firmware revision: 1.4
+   Module HW revision: 10.0
+   CMIS version:          0x50
+   Module State Machine: active_ready
+   DP State Machine
+        DP 0:    dp_ready
+        DP 1:    dp_ready
+   
+   EEPROM details for XCVR: xcvr-0/0/0
+   QSFP-DD Lower Page:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x00:19 50 00 07 00 00 00 00 00 00 00 00 00 00 33 44
+  0x10:80 d4 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x20:00 00 00 00 00 00 00 01 04 00 00 00 00 00 00 00
+  0x30:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x40:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x50:00 00 00 00 00 04 4b 04 11 ff 4c 04 11 ff 4d 04
+  0x60:22 55 4e 04 22 55 4f 04 44 11 50 04 44 11 ff 00
+  0x70:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11
+   QSFP-DD Upper Page 00h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:19 43 72 65 64 6f 20 20 20 20 20 20 20 20 20 20
+  0x90:20 9a ad ca 43 41 43 38 34 35 33 30 31 41 32 4e
+  0xa0:43 32 58 41 20 20 42 4c 38 4a 34 34 35 35 31 35
+  0xb0:30 30 30 37 56 20 32 35 30 34 30 39 20 20 20 20
+  0xc0:20 20 20 20 20 20 20 20 c0 34 2d 23 00 00 00 00
+  0xd0:00 00 00 03 0c 00 00 00 00 00 00 00 00 00 0e 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   QSFP-DD Upper Page 01h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:01 04 0a 00 00 00 00 00 00 00 00 00 00 00 20 00
+  0x90:59 60 46 00 00 02 9d 00 00 70 77 0b 03 06 06 03
+  0xa0:00 09 3d 67 0f 00 00 67 44 00 00 00 00 00 00 00
+  0xb0:ff ff 55 55 11 11 00 00 00 00 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 fd
+   QSFP-DD Upper Page 02h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:4b 00 fb 00 46 00 00 00 8b 42 76 8e 87 5a 7a 76
+  0x90:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xa0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xb0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 2e
+   Upper Page 10h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x90:00 50 50 50 50 58 58 58 58 ff 00 00 00 00 00 00
+  0xa0:ff ff 55 55 55 55 00 00 00 00 11 11 11 11 00 00
+  0xb0:00 00 00 00 10 12 14 16 18 1a 1c 1e ff 00 00 00
+  0xc0:00 00 00 ff ff 55 55 55 55 00 00 00 00 11 11 11
+  0xd0:11 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   Upper Page 11h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:44 44 44 44 ff ff 00 00 00 00 00 00 00 00 00 00
+  0x90:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xa0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xb0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 11 11 11 11 50 50
+  0xd0:50 50 58 58 58 58 ff 00 00 00 00 00 00 ff ff 55
+  0xe0:55 55 55 00 00 00 00 11 11 11 11 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  Warning: Page 10h,11h maybe stale
+  Warning: Please run test picd optics cmd eeprom_rescan
+
+root@xai-qfx5240-01:pfe&gt; show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 0 cmd advertised_applications 
+
+xcvr-0/0/0:
+Ap Sel  Host Intf Code                          Media Intf Code                         Host Lanes          Media Lanes         Host Assign         Media Assign
+1       100GAUI-1-S C2M (Annex 120G)  (75)   AOC with BER &lt; 10^(-6)        (4)   1                   1                   255                 255
+2       100GAUI-1-L C2M (Annex 120G)  (76)   AOC with BER &lt; 10^(-6)        (4)   1                   1                   255                 255
+3       200GAUI-2-S C2M (Annex 120G)  (77)   AOC with BER &lt; 10^(-6)        (4)   2                   2                   85                  85
+4       200GAUI-2-L C2M (Annex 120G)  (78)   AOC with BER &lt; 10^(-6)        (4)   2                   2                   85                  85
+5       400GAUI-4-S C2M (Annex 120G)  (79)   AOC with BER &lt; 10^(-6)        (4)   4                   4                   17                  17
+6       400GAUI-4-L C2M (Annex 120G)  (80)   AOC with BER &lt; 10^(-6)        (4)   4                   4                   17                  17
+
+root@xai-qfx5240-01:pfe&gt; show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 2 cmd advertised_applications    
+
+xcvr-0/0/2:
+Ap Sel  Host Intf Code                          Media Intf Code                         Host Lanes          Media Lanes         Host Assign         Media Assign
+1       100GAUI-1-S C2M (Annex 120G)  (75)   AOC with BER &lt; 10^(-6)        (4)   1                   1                   255                 255
+2       100GAUI-1-L C2M (Annex 120G)  (76)   AOC with BER &lt; 10^(-6)        (4)   1                   1                   255                 255
+3       200GAUI-2-S C2M (Annex 120G)  (77)   AOC with BER &lt; 10^(-6)        (4)   2                   2                   85                  85
+4       200GAUI-2-L C2M (Annex 120G)  (78)   AOC with BER &lt; 10^(-6)        (4)   2                   2                   85                  85
+5       400GAUI-4-S C2M (Annex 120G)  (79)   AOC with BER &lt; 10^(-6)        (4)   4                   4                   17                  17
+6       400GAUI-4-L C2M (Annex 120G)  (80)   AOC with BER &lt; 10^(-6)        (4)   4                   4                   17                  17
+
+root@xai-qfx5240-01:pfe&gt; show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 40 cmd advertised_applications   
+
+xcvr-0/0/40:
+Ap Sel  Host Intf Code                          Media Intf Code                         Host Lanes          Media Lanes         Host Assign         Media Assign
+1       400GAUI-4-S C2M (Annex 120G)  (79)   400GBASE-DR4 (Clause 124)     (28)   4                   4                   17                  17
+2       400GAUI-4-L C2M (Annex 120G)  (80)   400GBASE-DR4 (Clause 124)     (28)   4                   4                   17                  17
+3       100GAUI-1-S C2M (Annex 120G)  (75)   100GBASE-DR (Clause 140)      (20)   1                   1                   255                 255
+4       100GAUI-1-L C2M (Annex 120G)  (76)   100GBASE-DR (Clause 140)      (20)   1                   1                   255                 255
+5       800GAUI-8 S C2M (Annex 120G)  (81)   800GBASE-DR8 (placeholder)    (86)   8                   8                   1                   1
+6       800GAUI-8 L C2M (Annex 120G)  (82)   800GBASE-DR8 (placeholder)    (86)   8                   8                   1                   1
+7       200GAUI-2-S C2M (Annex 120G)  (77)   Vendor Specific/Custom        (224)   2                   2                   85                  85
+8       200GAUI-2-L C2M (Annex 120G)  (78)   Vendor Specific/Custom        (224)   2                   2                   85                  85
+
+root@xai-qfx5240-01:pfe&gt; show picd optics fpc_slot 0 pic_slot 0 port 40 cmd info
+
+  PICD optics info
+   fpc_num:         0
+   pic_num:         0
+   port_num:        40
+   run_periodic:    true
+   periodic_ticks:  6895
+   is_diagnostics:  false
+   QSFP_presence:  true
+   is_channelized:  false
+   config_mismatch: false
+   Module firmware revision: 0.13
+   Module HW revision: 1.2
+   CMIS version:          0x51
+   Module State Machine: active_ready
+   DP State Machine
+        DP 0:    dp_ready
+   
+   EEPROM details for XCVR: xcvr-0/0/40
+   QSFP-DD Lower Page:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x00:19 51 00 07 00 00 00 00 00 00 00 00 00 00 39 ee
+  0x10:81 21 df fd 37 04 00 00 00 00 60 00 00 00 00 00
+  0x20:00 00 f0 00 ff 00 00 00 0d 00 00 00 00 00 00 00
+  0x30:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x40:00 00 00 01 00 00 d1 17 00 00 00 00 00 00 00 00
+  0x50:00 00 00 00 00 02 4f 1c 44 11 50 1c 44 11 4b 14
+  0x60:11 ff 4c 14 11 ff 51 56 88 01 52 56 88 01 4d e0
+  0x70:22 55 4e e0 22 55 00 00 00 00 00 00 00 00 00 00
+   QSFP-DD Upper Page 00h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:19 4a 55 4e 49 50 45 52 2d 31 47 31 20 20 20 20
+  0x90:20 20 1b c9 37 34 30 2d 31 37 34 39 33 32 20 20
+  0xa0:20 20 20 20 30 31 31 47 31 54 4b 31 41 41 33 35
+  0xb0:30 41 5a 20 20 20 32 35 30 38 32 36 20 20 43 4d
+  0xc0:55 49 41 5a 37 42 41 41 e0 42 00 28 00 00 00 00
+  0xd0:00 00 00 00 06 00 00 00 00 00 00 00 00 00 ec 31
+  0xe0:47 31 4b 31 41 20 20 20 20 20 20 20 20 20 20 30
+  0xf0:31 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+   QSFP-DD Upper Page 01h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:00 00 01 02 05 00 00 00 00 00 66 6c 05 14 64 00
+  0x90:37 e9 46 00 00 00 9d 18 00 f0 77 bb 03 07 06 0f
+  0xa0:07 09 1d 77 ff 1f 80 47 34 00 00 00 00 00 00 00
+  0xb0:11 11 ff ff 01 01 55 55 55 55 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 4d
+  0xe0:00 22 55 4e 00 22 55 ff 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 6e
+   QSFP-DD Upper Page 02h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:4c 00 fa 00 49 00 fd 00 90 88 75 30 8c a0 77 24
+  0x90:7f ff 80 00 79 98 86 67 3c 00 2d 00 3a 00 2f 00
+  0xa0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xb0:9b 82 0a 0a 7b 86 0c a3 fd e8 13 88 f4 24 1d 4c
+  0xc0:ba f7 05 08 94 82 07 1b 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b6
+  QSFP-DD Upper Page 03h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x90:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xa0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xb0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   Upper Page 10h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x90:00 50 50 50 50 50 50 50 50 ff 00 00 00 00 00 00
+  0xa0:ff ff 22 22 22 22 00 00 00 00 11 11 11 11 00 00
+  0xb0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xc0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xd0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xf0:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   Upper Page 11h:
+       0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  0x80:44 44 44 44 ff ff 00 00 00 00 00 00 00 00 00 00
+  0x90:00 00 00 00 00 00 00 00 00 00 4d 0b 3a 21 3b 9e
+  0xa0:35 21 45 38 2d c1 48 ff 3b c5 88 af 88 af 88 af
+  0xb0:88 af 88 af 88 af 88 af 88 af 42 32 42 85 52 1b
+  0xc0:42 de 40 a9 4b 4f 29 d3 3b 8f 11 11 11 11 50 50
+  0xd0:50 50 50 50 50 50 ff 00 00 00 00 00 00 ff ff 22
+  0xe0:22 22 22 00 00 00 00 11 11 11 11 00 00 00 00 00
+  0xf0:11 22 33 44 55 66 77 88 11 22 33 44 55 66 77 88
+  Warning: Page 10h,11h maybe stale
+  Warning: Please run test picd optics cmd eeprom_rescan
+
+
+
+
+
+root@xai-qfx5240-01&gt; show lldp neighbors   
+Local Interface    Parent Interface    Chassis Id                               Port info          System Name
+et-0/0/17:1        -                   6c:92:cf:06:91:3e                        ens5f0np0           svl-hp-ai-srv01.englab.juniper.net
+et-0/0/16:1        -                   6c:92:cf:06:91:3e                        ens6f0np0           svl-hp-ai-srv01.englab.juniper.net
+et-0/0/2:1         -                   6c:92:cf:06:91:3e                        ens3f0np0           svl-hp-ai-srv01.englab.juniper.net
+et-0/0/12:1        -                   6c:92:cf:06:91:3e                        ens1f0np0           svl-hp-ai-srv01.englab.juniper.net
+et-0/0/15:1        -                   6c:92:cf:06:91:3e                        ens4f0np0           svl-hp-ai-srv01.englab.juniper.net
+et-0/0/13:1        -                   6c:92:cf:06:91:3e                        ens2f0np0           svl-hp-ai-srv01.englab.juniper.net
+re0:mgmt-0         -                   80:43:3f:1d:a7:80                        ge-1/0/42           sd-mgmt-a25.englab.juniper.net
+et-0/0/29:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/15           san-q5240-q09.englab.juniper.net
+et-0/0/26:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/19           san-q5240-q09.englab.juniper.net
+et-0/0/27:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/21           san-q5240-q09.englab.juniper.net
+et-0/0/25:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/23           san-q5240-q09.englab.juniper.net
+et-0/0/21:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/17           san-q5240-q09.englab.juniper.net
+et-0/0/20:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/29           san-q5240-q09.englab.juniper.net
+et-0/0/31:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/37           san-q5240-q09.englab.juniper.net
+et-0/0/34:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/49           san-q5240-q09.englab.juniper.net
+et-0/0/22:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/7            san-q5240-q09.englab.juniper.net
+et-0/0/23:1        -                   ac:a0:9d:b3:0c:50                        et-0/0/11           san-q5240-q09.englab.juniper.net
+et-0/0/33:1        -                   b4:16:78:54:dc:4b                        et-0/0/42           san-q5240-q08.englab.juniper.net
+et-0/0/30:0        -                   b4:16:78:54:dc:4b                        et-0/0/43           san-q5240-q08.englab.juniper.net
+et-0/0/30:1        -                   b4:16:78:54:dc:4b                        et-0/0/44           san-q5240-q08.englab.juniper.net
+et-0/0/24:0        -                   b4:16:78:54:dc:4b                        et-0/0/45           san-q5240-q08.englab.juniper.net
+et-0/0/24:1        -                   b4:16:78:54:dc:4b                        et-0/0/46           san-q5240-q08.englab.juniper.net
+et-0/0/53:0        -                   b4:16:78:54:dc:4b                        et-0/0/49           san-q5240-q08.englab.juniper.net
+et-0/0/53:1        -                   b4:16:78:54:dc:4b                        et-0/0/50           san-q5240-q08.englab.juniper.net
+et-0/0/58:0        -                   b4:16:78:54:dc:4b                        et-0/0/51           san-q5240-q08.englab.juniper.net
+et-0/0/58:1        -                   b4:16:78:54:dc:4b                        et-0/0/52           san-q5240-q08.englab.juniper.net
+et-0/0/42:0        -                   b4:16:78:54:dc:4b                        et-0/0/53           san-q5240-q08.englab.juniper.net
+et-0/0/42:1        -                   b4:16:78:54:dc:4b                        et-0/0/54           san-q5240-q08.englab.juniper.net
+et-0/0/32:0        -                   b4:16:78:54:dc:4b                        et-0/0/56           san-q5240-q08.englab.juniper.net
+et-0/0/32:1        -                   b4:16:78:54:dc:4b                        et-0/0/57           san-q5240-q08.englab.juniper.net
+et-0/0/28:0        -                   b4:16:78:54:dc:4b                        et-0/0/60           san-q5240-q08.englab.juniper.net
+et-0/0/28:1        -                   b4:16:78:54:dc:4b                        et-0/0/61           san-q5240-q08.englab.juniper.net
+et-0/0/19:0        -                   b4:16:78:54:dc:4b                        et-0/0/62           san-q5240-q08.englab.juniper.net
+et-0/0/19:1        -                   b4:16:78:54:dc:4b                        et-0/0/63           san-q5240-q08.englab.juniper.net
+et-0/0/44:0        -                   bc:0f:fe:09:ca:6e                        Connected to R0 Spine1 san-q5240-06.englab.juniper.net
+et-0/0/44:1        -                   bc:0f:fe:09:ca:6e                        Connected to R0 Spine1 san-q5240-06.englab.juniper.net
+et-0/0/51:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/60:0         san-q5240-06.englab.juniper.net
+et-0/0/51:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/60:1         san-q5240-06.englab.juniper.net
+et-0/0/57:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/58:0         san-q5240-06.englab.juniper.net
+et-0/0/57:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/58:1         san-q5240-06.englab.juniper.net
+et-0/0/55:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/63:0         san-q5240-06.englab.juniper.net
+et-0/0/55:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/63:1         san-q5240-06.englab.juniper.net
+et-0/0/61:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/57:0         san-q5240-06.englab.juniper.net
+et-0/0/61:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/57:1         san-q5240-06.englab.juniper.net
+et-0/0/60:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/48:0         san-q5240-06.englab.juniper.net
+et-0/0/41:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/56:0         san-q5240-06.englab.juniper.net
+et-0/0/41:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/56:1         san-q5240-06.englab.juniper.net
+et-0/0/39:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/59:0         san-q5240-06.englab.juniper.net
+et-0/0/39:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/59:1         san-q5240-06.englab.juniper.net
+et-0/0/60:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/48:1         san-q5240-06.englab.juniper.net
+et-0/0/56:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/35:0         san-q5240-06.englab.juniper.net
+et-0/0/56:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/35:1         san-q5240-06.englab.juniper.net
+et-0/0/50:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/36:0         san-q5240-06.englab.juniper.net
+et-0/0/50:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/36:1         san-q5240-06.englab.juniper.net
+et-0/0/40:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/40:0         san-q5240-06.englab.juniper.net
+et-0/0/40:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/40:1         san-q5240-06.englab.juniper.net
+et-0/0/36:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/41:0         san-q5240-06.englab.juniper.net
+et-0/0/36:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/41:1         san-q5240-06.englab.juniper.net
+et-0/0/62:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/42:0         san-q5240-06.englab.juniper.net
+et-0/0/62:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/42:1         san-q5240-06.englab.juniper.net
+et-0/0/37:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/43:0         san-q5240-06.englab.juniper.net
+et-0/0/37:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/43:1         san-q5240-06.englab.juniper.net
+et-0/0/52:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/44:0         san-q5240-06.englab.juniper.net
+et-0/0/52:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/44:1         san-q5240-06.englab.juniper.net
+et-0/0/54:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/45:0         san-q5240-06.englab.juniper.net
+et-0/0/54:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/45:1         san-q5240-06.englab.juniper.net
+et-0/0/45:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/46:0         san-q5240-06.englab.juniper.net
+et-0/0/45:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/46:1         san-q5240-06.englab.juniper.net
+et-0/0/38:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/47:0         san-q5240-06.englab.juniper.net
+et-0/0/38:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/47:1         san-q5240-06.englab.juniper.net
+et-0/0/46:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/49:0         san-q5240-06.englab.juniper.net
+et-0/0/46:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/49:1         san-q5240-06.englab.juniper.net
+et-0/0/48:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/50:0         san-q5240-06.englab.juniper.net
+et-0/0/48:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/50:1         san-q5240-06.englab.juniper.net
+et-0/0/43:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/51:0         san-q5240-06.englab.juniper.net
+et-0/0/43:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/51:1         san-q5240-06.englab.juniper.net
+et-0/0/49:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/53:0         san-q5240-06.englab.juniper.net
+et-0/0/49:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/53:1         san-q5240-06.englab.juniper.net
+et-0/0/47:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/54:1         san-q5240-06.englab.juniper.net
+et-0/0/59:0        -                   bc:0f:fe:09:ca:6e                        et-0/0/55:0         san-q5240-06.englab.juniper.net
+et-0/0/59:1        -                   bc:0f:fe:09:ca:6e                        et-0/0/55:1         san-q5240-06.englab.juniper.net
+et-0/0/10:1        -                   c4:cb:e1:d5:d5:a6                        enp97s0f0np0        svl-d-ai-srv04      
+et-0/0/7:1         -                   c4:cb:e1:d5:d5:a6                        enp202s0f0np0       svl-d-ai-srv04      
+et-0/0/11:1        -                   c4:cb:e1:d5:d5:a6                        enp74s0f0np0        svl-d-ai-srv04      
+et-0/0/1:1         -                   c4:cb:e1:d5:d5:a6                        enp13s0f0np0        svl-d-ai-srv04      
+et-0/0/0:1         -                   c4:cb:e1:d5:d5:a6                        enp55s0f0np0        svl-d-ai-srv04      
+et-0/0/6:1         -                   c4:cb:e1:d5:d5:a6                        enp225s0f0np0       svl-d-ai-srv04      
+et-0/0/14:1        -                   c4:cb:e1:d5:d5:a6                        enp181s0f0np0       svl-d-ai-srv04      
+et-0/0/3:1         -                   c4:cb:e1:d5:d5:a6                        enp160s0f0np0       svl-d-ai-srv04      
+et-0/0/0:0         -                   c4:cb:e1:d5:ed:a6                        enp55s0f0np0        localhost           
+et-0/0/1:0         -                   c4:cb:e1:d5:ed:a6                        enp13s0f0np0        localhost           
+et-0/0/3:0         -                   c4:cb:e1:d5:ed:a6                        enp160s0f0np0       localhost           
+et-0/0/14:0        -                   c4:cb:e1:d5:ed:a6                        enp181s0f0np0       localhost           
+et-0/0/6:0         -                   c4:cb:e1:d5:ed:a6                        enp225s0f0np0       localhost           
+et-0/0/11:0        -                   c4:cb:e1:d5:ed:a6                        enp74s0f0np0        localhost           
+et-0/0/10:0        -                   c4:cb:e1:d5:ed:a6                        enp97s0f0np0        localhost           
+et-0/0/7:0         -                   c4:cb:e1:d5:ed:a6                        enp202s0f0np0       localhost           
+et-0/0/18:0        -                   c4:cb:e1:f2:aa:0c                        enp180s0f0np0       san-rt-ai-srv01     
+et-0/0/5:0         -                   c4:cb:e1:f2:aa:0c                        enp73s0f0np0        san-rt-ai-srv01     
+et-0/0/9:0         -                   c4:cb:e1:f2:aa:0c                        enp201s0f0np0       san-rt-ai-srv01     
+et-0/0/4:0         -                   c4:cb:e1:f2:aa:0c                        enp225s0f0np0       san-rt-ai-srv01     
+et-0/0/18:1        -                   c4:cb:e1:f2:aa:14                        enp13s0f0np0        san-rt-ai-srv02.englab.juniper.net
+et-0/0/5:1         -                   c4:cb:e1:f2:aa:14                        enp73s0f0np0        san-rt-ai-srv02.englab.juniper.net
+et-0/0/4:1         -                   c4:cb:e1:f2:aa:14                        enp225s0f0np0       san-rt-ai-srv02.englab.juniper.net
+et-0/0/9:1         -                   c4:cb:e1:f2:aa:14                        enp201s0f0np0       san-rt-ai-srv02.englab.juniper.net
+et-0/0/8:1         -                   c4:cb:e1:f2:aa:14                        enp97s0f0np0        san-rt-ai-srv02.englab.juniper.net
+
+
+# Server info
+
+root@svl-d-ai-srv04:~# lshw -c net -businfo
+USB                         
+Bus info          Device         Class          Description
+===========================================================
+pci@0000:02:00.0  eno8303        network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:02:00.1  eno8403        network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:0d:00.0  enp13s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:22:00.0  eno12399np0    network        BCM57414 NetXtreme-E 10Gb/25Gb RDMA Ethernet Controller
+pci@0000:22:00.1  eno12409np1    network        BCM57414 NetXtreme-E 10Gb/25Gb RDMA Ethernet Controller
+pci@0000:37:00.0  enp55s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:4a:00.0  enp74s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:61:00.0  enp97s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:a0:00.0  enp160s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:b5:00.0  enp181s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:ca:00.0  enp202s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:e1:00.0  enp225s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+
+
+root@svl-d-ai-srv03:~# lshw -c net -businfo
+Bus info          Device         Class          Description
+===========================================================
+pci@0000:02:00.0  eno8303        network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:02:00.1  eno8403        network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:0d:00.0  enp13s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:22:00.0  eno12399np0    network        BCM57414 NetXtreme-E 10Gb/25Gb RDMA Ethernet Controller
+pci@0000:22:00.1  eno12409np1    network        BCM57414 NetXtreme-E 10Gb/25Gb RDMA Ethernet Controller
+pci@0000:37:00.0  enp55s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:4a:00.0  enp74s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:61:00.0  enp97s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:a0:00.0  enp160s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:b5:00.0  enp181s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:ca:00.0  enp202s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:e1:00.0  enp225s0f0np0  network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+
+
+root@san-rt-ai-srv01:~# lshw -c net -businfo
+Bus info          Device          Class          Description
+============================================================
+pci@0000:02:00.0  eno8303         network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:02:00.1  eno8403         network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:0d:00.0  enp13s0np0      network        MT2910 Family [ConnectX-7]
+pci@0000:3a:00.0  enp58s0         network        DSC Ethernet Controller
+pci@0000:49:00.0  enp73s0f0np0    network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:9f:00.0                  network        Broadcom Inc. and subsidiaries
+pci@0000:b4:00.0  enp180s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:c9:00.0  enp201s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:e1:00.0  enp225s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+usb@1:10.3        idrac           network        Ethernet interface
+
+
+root@san-rt-ai-srv02:~# lshw -c net -businfo
+Bus info          Device          Class          Description
+============================================================
+pci@0000:02:00.0  eno8303         network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:02:00.1  eno8403         network        NetXtreme BCM5720 Gigabit Ethernet PCIe
+pci@0000:0d:00.0  enp13s0f0np0    network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:37:00.0  enp55s0np0      network        MT2910 Family [ConnectX-7]
+pci@0000:49:00.0  enp73s0f0np0    network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:61:00.0  enp97s0f0np0    network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:9f:00.0                  network        Broadcom Inc. and subsidiaries
+pci@0000:b4:00.0  enp180s0np0     network        MT2910 Family [ConnectX-7]
+pci@0000:c9:00.0  enp201s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:e1:00.0  enp225s0f0np0   network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+
+root@svl-hp-ai-srv01:~# lshw -c net -businfo
+Bus info          Device          Class          Description
+============================================================
+pci@0000:12:00.0  ens3f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:26:00.0  ens2f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:3a:00.0  ens14f0         network        NetXtreme BCM5719 Gigabit Ethernet PCIe
+pci@0000:3a:00.1  ens14f1         network        NetXtreme BCM5719 Gigabit Ethernet PCIe
+pci@0000:3a:00.2  ens14f2         network        NetXtreme BCM5719 Gigabit Ethernet PCIe
+pci@0000:3a:00.3  ens14f3         network        NetXtreme BCM5719 Gigabit Ethernet PCIe
+pci@0000:62:00.0  ens1f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:8a:00.0  ens5f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:9f:00.0  ens6f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+pci@0000:c9:00.0  ens4f0np0       network        MT43244 BlueField-3 integrated ConnectX-7 network controller
+
+
+
+
+
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="systest_repro_overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="sd_lab_photos.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="systest_repro_overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="sd_lab_photos.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
