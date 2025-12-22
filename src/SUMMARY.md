@@ -3,7 +3,7 @@
 - [Overview](./chapter_1.md)
 - [Systest Repro Summary](./systest_repro_summary.md)
   - [Overview](./systest_repro_overview.md)
-  - [Verification Logs](./verification_logs)
+  - [Verification Logs](./verification_logs.md)
   - [Systest Lab Images](./sd_lab_photos.md)
   - [Systest Topology](./systest_topology.md)
 
