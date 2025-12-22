@@ -3,6 +3,7 @@
 - [Overview](./chapter_1.md)
 - [Systest Repro Summary](./systest_repro_summary.md)
   - [Overview](./systest_repro_overview.md)
+  - [Verification Logs](./verification_logs)
   - [Systest Lab Images](./sd_lab_photos.md)
   - [Systest Topology](./systest_topology.md)
 
@@ -18,4 +19,5 @@
     - [Server Logs - BF3 NIC](./log_collection_server_logs_bf3.md)
     - [Stress Testing](./log_collection_stress_testing.md)
     - [Toggle Fan Speed](./fan_toggle_random.md)
+
 - [Remediation and Root Cause](./remediation.md)

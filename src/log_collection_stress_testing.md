@@ -42,6 +42,7 @@ Optics OIR test:
 - Optional link check: add --check-status to verify link DOWN after remove and UP after insert (uses --down-timeout/--up-timeout)
 - Inter-cycle wait: --flap-wait applies between OIR cycles
 - Modes: --remove-only (skip insert), --insert-only (skip remove)
+- Round-robin: --round-robin alternates ports per cycle (e.g., cycle 1: port 36, then 60; cycle 2: port 36, then 60; etc.)
 
 Examples:
 - Disable: ./evo_link_flap.py --disable xe-0/0/1
@@ -51,6 +52,7 @@ Examples:
 - Flap (BRCM):  ./evo_link_flap.py --flap 21,22 --brcm_cli --flap-count 2 --flap-wait 5
 - Flap+OIR:     ./evo_link_flap.py --flap 21,22 --oir-test --flap-count 2 --flap-wait 5 --check-status
 - OIR only:     ./evo_link_flap.py --oir-test 21,22 --flap-count 3 --flap-wait 5 --check-status
+- OIR round-robin: ./evo_link_flap.py --oir-test 36,60 --flap-count 3 --flap-wait 5 --check-status --round-robin
 - OIR remove:   ./evo_link_flap.py --oir-test 21,22 --remove-only --check-status
 - OIR insert:   ./evo_link_flap.py --oir-test 21,22 --insert-only --check-status
 """
@@ -502,6 +504,7 @@ def optics_oir_test(
     remove_only: bool = False,
     insert_only: bool = False,
     verify_attempts: Optional[int] = None,
+    round_robin: bool = False,
 ) -> bool:
     if remove_only and insert_only:
         warn_msg("Cannot use both --remove-only and --insert-only for OIR.")
@@ -521,9 +524,12 @@ def optics_oir_test(
     cycles = max(1, int(cycles or 1))
 
     norm_ports = [str(p).strip() for p in ports if str(p).strip()]
-    user_msg(f"[OIR] fpc={fpc_slot}, pic={pic_slot}, ports={', '.join(norm_ports)} (poll_delay={poll_delay_sec}s, retries={retries}, cycles={cycles})")
+    mode_desc = "round-robin" if round_robin else "sequential"
+    user_msg(f"[OIR] fpc={fpc_slot}, pic={pic_slot}, ports={', '.join(norm_ports)} (poll_delay={poll_delay_sec}s, retries={retries}, cycles={cycles}, mode={mode_desc})")
     all_ok = True
 
+    # Pre-check: ensure all Xcvrs are visible before starting (skip this if insert-only)
+    port_info = []
     for port in norm_ports:
         try:
             port_num = int(str(port).strip())
@@ -535,59 +541,153 @@ def optics_oir_test(
         port_disp = f"{int(fpc_slot)}/{int(pic_slot)}/{port_num}"
         xcvr_name = f"Xcvr {port_num}"
         link_iface = normalize_iface_token(str(port_num))
-        mode_desc = "remove->insert" if (remove_step and insert_step) else ("remove-only" if remove_step else "insert-only")
-        user_msg(f"[OIR] {port_disp}: {mode_desc} (cycles={cycles})")
-
-        # Pre-check: ensure Xcvr is visible before starting; otherwise skip with warn (skip this if insert-only)
+        
         if remove_step and not _xcvr_present_in_inventory(xcvr_name):
             warn_msg(f"[OIR] {port_disp}: transceiver '{xcvr_name}' not visible before test, skipping.")
             result_msg(f"[OIR] {port_disp}: SKIP (not present pre-test)")
             all_ok = False
             continue
 
-        port_ok = True
+        port_info.append({
+            'port': port,
+            'port_num': port_num,
+            'port_disp': port_disp,
+            'xcvr_name': xcvr_name,
+            'link_iface': link_iface,
+            'ok': True
+        })
+
+    if not port_info:
+        warn_msg("[OIR] No valid ports to test after pre-checks.")
+        return False
+
+    if round_robin:
+        # Round-robin mode: iterate cycles first, then ports within each cycle
+        mode_desc = "remove->insert" if (remove_step and insert_step) else ("remove-only" if remove_step else "insert-only")
+        user_msg(f"[OIR] Round-robin mode: {mode_desc} (cycles={cycles}, ports={len(port_info)})")
+        
         for cycle in range(1, cycles + 1):
-            try:
-                user_msg(f"[OIR] {port_disp} cycle {cycle}/{cycles}")
-                _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_enable")
-                time.sleep(0.5)
-                if remove_step:
-                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "remove")
-                    time.sleep(0.8)
-                    if check_status:
-                        user_msg(f"[OIR] {port_disp}: verifying link DOWN on {link_iface} (timeout {down_timeout}s)")
-                    if not verify_oper_state(link_iface, "down", down_timeout, down_interval, attempts=verify_attempts):
-                        warn_msg(f"[OIR] {port_disp}: link did not go DOWN within timeout")
-                        port_ok = False
-                if insert_step:
-                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "insert")
+            user_msg(f"[OIR] === Cycle {cycle}/{cycles} ===")
+            cycle_ok = True
+            
+            for port_data in port_info:
+                port_num = port_data['port_num']
+                port_disp = port_data['port_disp']
+                xcvr_name = port_data['xcvr_name']
+                link_iface = port_data['link_iface']
+                
+                try:
+                    user_msg(f"[OIR] {port_disp} (cycle {cycle}/{cycles})")
+                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_enable")
                     time.sleep(0.5)
-                _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_disable")
-                time.sleep(0.5)
-            except Exception as e:
-                warn_msg(f"[OIR] Error during OIR sequence for {port_disp} (cycle {cycle}): {e}")
-                port_ok = False
-                continue
+                    
+                    if remove_step:
+                        _pfe_optics_action(fpc_slot, pic_slot, port_num, "remove")
+                        time.sleep(0.8)
+                        if check_status:
+                            user_msg(f"[OIR] {port_disp}: verifying link DOWN on {link_iface} (timeout {down_timeout}s)")
+                        if not verify_oper_state(link_iface, "down", down_timeout, down_interval, attempts=verify_attempts):
+                            warn_msg(f"[OIR] {port_disp}: link did not go DOWN within timeout")
+                            port_data['ok'] = False
+                            cycle_ok = False
+                    
+                    if insert_step:
+                        _pfe_optics_action(fpc_slot, pic_slot, port_num, "insert")
+                        time.sleep(0.5)
+                    
+                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_disable")
+                    time.sleep(0.5)
+                except Exception as e:
+                    warn_msg(f"[OIR] Error during OIR sequence for {port_disp} (cycle {cycle}): {e}")
+                    port_data['ok'] = False
+                    cycle_ok = False
+                    continue
 
-            if insert_step:
-                ok = _poll_for_xcvr_after_insert(xcvr_name, retries, poll_delay_sec)
-                if not ok:
+                if insert_step:
+                    ok = _poll_for_xcvr_after_insert(xcvr_name, retries, poll_delay_sec)
+                    if not ok:
+                        port_data['ok'] = False
+                        cycle_ok = False
+                    # Optional link status check after inventory appears
+                    if ok and check_status:
+                        user_msg(f"[OIR] {port_disp}: verifying link UP on {link_iface} (timeout {status_timeout}s)")
+                        if not verify_oper_state(link_iface, "up", status_timeout, status_interval, attempts=verify_attempts):
+                            warn_msg(f"[OIR] {port_disp}: link did not come UP within timeout")
+                            port_data['ok'] = False
+                            cycle_ok = False
+
+                # Wait between ports in the same cycle (if not the last port)
+                if port_data != port_info[-1] and inter_cycle_wait > 0:
+                    user_msg(f"[OIR] Waiting {inter_cycle_wait}s before next port in cycle {cycle}")
+                    time.sleep(inter_cycle_wait)
+
+            # Wait between cycles (if not the last cycle)
+            if cycle != cycles and inter_cycle_wait > 0:
+                user_msg(f"[OIR] Waiting {inter_cycle_wait}s before next cycle")
+                time.sleep(inter_cycle_wait)
+
+        # Final summary per port
+        for port_data in port_info:
+            port_disp = port_data['port_disp']
+            if port_data['ok']:
+                result_msg(f"[OIR] {port_disp}: SUCCESS (round-robin, {cycles} cycle{'s' if cycles != 1 else ''})")
+            else:
+                result_msg(f"[OIR] {port_disp}: FAIL (round-robin, {cycles} cycle{'s' if cycles != 1 else ''})")
+                all_ok = False
+
+    else:
+        # Sequential mode: original behavior - all cycles for port 1, then all cycles for port 2, etc.
+        for port_data in port_info:
+            port_num = port_data['port_num']
+            port_disp = port_data['port_disp']
+            xcvr_name = port_data['xcvr_name']
+            link_iface = port_data['link_iface']
+            mode_desc = "remove->insert" if (remove_step and insert_step) else ("remove-only" if remove_step else "insert-only")
+            user_msg(f"[OIR] {port_disp}: {mode_desc} (cycles={cycles})")
+
+            port_ok = True
+            for cycle in range(1, cycles + 1):
+                try:
+                    user_msg(f"[OIR] {port_disp} cycle {cycle}/{cycles}")
+                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_enable")
+                    time.sleep(0.5)
+                    if remove_step:
+                        _pfe_optics_action(fpc_slot, pic_slot, port_num, "remove")
+                        time.sleep(0.8)
+                        if check_status:
+                            user_msg(f"[OIR] {port_disp}: verifying link DOWN on {link_iface} (timeout {down_timeout}s)")
+                        if not verify_oper_state(link_iface, "down", down_timeout, down_interval, attempts=verify_attempts):
+                            warn_msg(f"[OIR] {port_disp}: link did not go DOWN within timeout")
+                            port_ok = False
+                    if insert_step:
+                        _pfe_optics_action(fpc_slot, pic_slot, port_num, "insert")
+                        time.sleep(0.5)
+                    _pfe_optics_action(fpc_slot, pic_slot, port_num, "oir_disable")
+                    time.sleep(0.5)
+                except Exception as e:
+                    warn_msg(f"[OIR] Error during OIR sequence for {port_disp} (cycle {cycle}): {e}")
                     port_ok = False
-                # Optional link status check after inventory appears
-                if ok and check_status:
-                    user_msg(f"[OIR] {port_disp}: verifying link UP on {link_iface} (timeout {status_timeout}s)")
-                    if not verify_oper_state(link_iface, "up", status_timeout, status_interval, attempts=verify_attempts):
-                        warn_msg(f"[OIR] {port_disp}: link did not come UP within timeout")
-                        port_ok = False
+                    continue
 
-        if port_ok:
-            result_msg(f"[OIR] {port_disp}: SUCCESS (transceiver visible across {cycles} cycle{'s' if cycles != 1 else ''})")
-        else:
-            result_msg(f"[OIR] {port_disp}: FAIL (transceiver not visible in one or more cycles)")
-            all_ok = False
-        if inter_cycle_wait > 0 and cycle != cycles:
-            user_msg(f"[OIR] Waiting {inter_cycle_wait}s before next cycle for {port_disp}")
-            time.sleep(inter_cycle_wait)
+                if insert_step:
+                    ok = _poll_for_xcvr_after_insert(xcvr_name, retries, poll_delay_sec)
+                    if not ok:
+                        port_ok = False
+                    # Optional link status check after inventory appears
+                    if ok and check_status:
+                        user_msg(f"[OIR] {port_disp}: verifying link UP on {link_iface} (timeout {status_timeout}s)")
+                        if not verify_oper_state(link_iface, "up", status_timeout, status_interval, attempts=verify_attempts):
+                            warn_msg(f"[OIR] {port_disp}: link did not come UP within timeout")
+                            port_ok = False
+
+            if port_ok:
+                result_msg(f"[OIR] {port_disp}: SUCCESS (transceiver visible across {cycles} cycle{'s' if cycles != 1 else ''})")
+            else:
+                result_msg(f"[OIR] {port_disp}: FAIL (transceiver not visible in one or more cycles)")
+                all_ok = False
+            if inter_cycle_wait > 0 and cycle != cycles:
+                user_msg(f"[OIR] Waiting {inter_cycle_wait}s before next cycle for {port_disp}")
+                time.sleep(inter_cycle_wait)
 
     result_msg(f"[OIR] Summary: {'OK' if all_ok else 'PARTIAL/FAIL'} for ports {', '.join(norm_ports)}")
     return all_ok
@@ -759,6 +859,7 @@ def main():
     ap.add_argument("--check-status", action="store_true", help="For OIR: also verify interface link comes UP after insert")
     ap.add_argument("--remove-only", action="store_true", help="For OIR: run remove-only (skip insert)")
     ap.add_argument("--insert-only", action="store_true", help="For OIR: run insert-only (skip remove)")
+    ap.add_argument("--round-robin", action="store_true", help="For OIR: alternate ports per cycle (e.g., cycle 1: port 36, then 60; cycle 2: port 36, then 60; etc.)")
 
     # Interface mapping
     ap.add_argument("--iface-prefix", default="et-0/0/",
@@ -893,6 +994,7 @@ def main():
                     remove_only=args.remove_only,
                     insert_only=args.insert_only,
                     verify_attempts=args.attempts,
+                    round_robin=args.round_robin,
                 )
                 result_msg(f"OIR test {'OK' if ok else 'PARTIAL/FAIL'} -> {', '.join(ports)}")
                 continue
@@ -980,5 +1082,6 @@ if __name__ == "__main__":
         print("\n[WARN] Interrupted by user (Ctrl+C).")
         print(f"[INFO] Log saved at {LOGFILE}")
         sys.exit(130)
+
 
 ```

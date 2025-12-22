@@ -35,23 +35,24 @@
 - In the lab, link flaps were observed when auto negotiation was enabled or disabled.
 - Can auto negotiation be disabled on a sample configuration?
 
-
-## Purpose
-- Capture what happened during the link flap escalation and why it mattered to xAI reliability.
-- Give oncall engineers a concise snapshot plus links to deeper sections in this book.
-- Provide a repeatable playbook so similar transport issues can be mitigated faster.
-
-## Scope & Services
-- Impacted: xAI serving stack (inference + embedding nodes) in the primary production AZ; adjust the AZ/cluster label if this moves.
-- Data plane: top-of-rack uplinks to the aggregation layer; control plane signals (BGP/BFD) shared the same optics.
-- Traffic pattern: north-south user requests with east-west model fetches; redundancy available through paired uplinks.
-
 ## Event Summary
 - Symptoms: repeated down/up events on one uplink caused packet loss, retransmits, and elevated tail latency while flows hashed to the bad member.
 - Customer impact: transient 5xx spikes (~3% for ~12 minutes) and p95 latency regression (+250–400 ms) until traffic drained off the flapping link.
 - Mitigation: disabled the unhealthy link in the port-channel, forced traffic to the healthy member, replaced the suspect optic, and re-enabled after burn-in.
 
 ## Current Status
-- The link has been stable after replacement and a 60-minute burn-in with zero CRC/BFD errors observed.
-- Additional detection is in place to alarm on sub-minute flaps and CRC growth on xAI TOR uplinks.
-- Follow-up items are tracked in the Action Items section.
+
+Dated: Dec/22/2025
+
+System Test Lab - Voltage margining, multiple power reset, optics insertion/removal, and firmware/software regression testing on the FA unit
+No pattern that resulted in repetitive/continuous flaps.
+
+Hardware Lab - Chamber testing, Multiple thermal cycles [-5C -> room temp -> +40C -> room temp] completed but no flaps seen so far.
+
+Hardware Lab - Power Testing, 3.3V optics power rails have been scoped and associated circuits reviewed. No issues found so far
+Attempts to force link flaps on an RMA QFX5240 by injecting noise have not been successful.
+Instrumented FA unit with probes and attempt to replicate link flaps, not able to find a consistent way to replicate the issue.
+
+Hardware Lab – Timing, We have been evaluating clock circuits for a potential source of disruption that could impact multiple optical links simultaneously. 
+It’s difficult to access clock signals directly for measurements due to how they are routed to BGA component with buried vias. Scoping these signals is tricky and requires more time and careful instrumentation.
+We have found that injecting a disturbance into a specific part of the timing circuit can cause simultaneous link flaps. The team is looking at all aspects to confirm if it’s resulting in the same issue reported at xAI. We are also trying to determine if and how a similar disturbance can potentially occur in normal operating conditions.
