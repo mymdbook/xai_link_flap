@@ -11,8 +11,10 @@ chmod +x fan_toggle_random.py
 #
 
  
-Example: Trays 0-4, run 10 iterations, 2-minute interval
-./fan_toggle_random.py --trays 0,1,2,3,4 --iterations 10 --interval 120
+Example: 
+
+Trays 0-3, run 10 iterations, 2-minute interval
+##### ./fan_toggle_random.py --trays 0,1,2,3 --iterations 10 --interval 120
 
 ```python
 #fan_toggle_random.py
