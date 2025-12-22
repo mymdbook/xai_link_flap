@@ -1,5 +1,5 @@
 #URL for this Page
-https://mymdbook.github.io/xai_link_flap/chapter_1.html
+https://mymdbook.github.io/xai_link_flap/
 
 
 # XAI Link Flap Escalation
