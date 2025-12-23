@@ -44,15 +44,20 @@
 
 Dated: Dec/22/2025
 
-System Test Lab - Voltage margining, multiple power reset, optics insertion/removal, and firmware/software regression testing on the FA unit
+- System Test Lab - Voltage margining, multiple power reset, optics insertion/removal, and firmware/software regression testing on the FA unit
 No pattern that resulted in repetitive/continuous flaps.
 
-Hardware Lab - Chamber testing, Multiple thermal cycles [-5C -> room temp -> +40C -> room temp] completed but no flaps seen so far.
+- Hardware Lab - Chamber testing, Multiple thermal cycles [-5C -> room temp -> +40C -> room temp] completed but no flaps seen so far.
 
-Hardware Lab - Power Testing, 3.3V optics power rails have been scoped and associated circuits reviewed. No issues found so far
+- Hardware Lab - Power Testing, 3.3V optics power rails have been scoped and associated circuits reviewed. No issues found so far
 Attempts to force link flaps on an RMA QFX5240 by injecting noise have not been successful.
 Instrumented FA unit with probes and attempt to replicate link flaps, not able to find a consistent way to replicate the issue.
 
-Hardware Lab – Timing, We have been evaluating clock circuits for a potential source of disruption that could impact multiple optical links simultaneously. 
+- Hardware Lab – Timing, We have been evaluating clock circuits for a potential source of disruption that could impact multiple optical links simultaneously. 
 It’s difficult to access clock signals directly for measurements due to how they are routed to BGA component with buried vias. Scoping these signals is tricky and requires more time and careful instrumentation.
 We have found that injecting a disturbance into a specific part of the timing circuit can cause simultaneous link flaps. The team is looking at all aspects to confirm if it’s resulting in the same issue reported at xAI. We are also trying to determine if and how a similar disturbance can potentially occur in normal operating conditions.
+
+## All Flapped Devices
+Dec/23/2025
+
+![All Flapped Devices Dec/23/2025](images/All_Devices_Seen_Flap.png)

@@ -1,4 +1,5 @@
 # Event-Options Config
+- Event option configuration for log collection script during flap
 
 ```text
 root@xai-qfx5240-01# show event-options 

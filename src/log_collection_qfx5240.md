@@ -1,4 +1,5 @@
 # QFX5240 Script
+- Logs to be connected during flap 
 
 ```bash
 #!/bin/bash

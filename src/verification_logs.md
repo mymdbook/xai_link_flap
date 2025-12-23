@@ -19,6 +19,14 @@
 - DR8 Advertised Speed: 	show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 40 cmd advertised_applications   
 - Server NIC: 			lshw -c net -businfo
 - LLDP Neighbor: 		show lldp neighbors   
+
+Commands for register read:
+- To read the current values 
+	- i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
+- To reset the counter 
+	- i2cset -y 1 0x9 0xfd 0x5; i2cset -y 1 0x9 0x72 0x0
+- To read the values periodically or after the flap - 
+	- i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
 ````
 
 ### CLI Output
@@ -809,6 +817,13 @@ pci@0000:c9:00.0  ens4f0np0       network        MT43244 BlueField-3 integrated 
 
 
 
+Commands for register read:
+
+vrf:none] root@svla-q5240-q02:~# i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
+0x00
+[vrf:none] root@svla-q5240-q02:~# i2cset -y 1 0x9 0xfd 0x5; i2cset -y 1 0x9 0x72 0x0
+[vrf:none] root@svla-q5240-q02:~# i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
+0x00
 
 
 

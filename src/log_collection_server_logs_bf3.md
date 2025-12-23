@@ -1,4 +1,5 @@
 # Server Logs - BF3 NIC
+- logs from server side to be collected during flap event
 
 ```sh
 #!/bin/sh
@@ -42,47 +43,3 @@ while true; do
 done
 ```
 
-```sh
-#!/bin/sh
-
-OUT="/dev/shm/mnt/persist/interface_flap_new.txt"
-SLEEP=2
-HOST=$(hostname)
-
-while true; do
-  TS="$(date)"
-  echo "$TS" >> "$OUT"
-  echo "#### running mlxlink for MST devices on $HOST ####" >> "$OUT"
-
-  # Ensure MST devices exist
-  mst start >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    echo "ERROR: mst start failed on $HOST" >> "$OUT"
-    echo "========================================" >> "$OUT"
-    echo >> "$OUT"
-    sleep "$SLEEP"
-    continue
-  fi
-
-  # Discover MST device nodes from mst status
-  DEVS=$(mst status 2>/dev/null | awk '/^\/dev\/mst\//{print $1}')
-
-  if [ -z "$DEVS" ]; then
-    echo "WARN: No /dev/mst devices found in mst status on $HOST" >> "$OUT"
-    echo "========================================" >> "$OUT"
-    echo >> "$OUT"
-    sleep "$SLEEP"
-    continue
-  fi
-
-  for dev in $DEVS; do
-    echo "---- $dev ----" >> "$OUT"
-    mlxlink -d "$dev" --cable --dump -m >> "$OUT" 2>&1
-    echo >> "$OUT"
-  done
-
-  echo "========================================" >> "$OUT"
-  echo >> "$OUT"
-  sleep "$SLEEP"
-done
-```

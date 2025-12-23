@@ -6,6 +6,8 @@
   - [Verification Logs](./verification_logs.md)
   - [Systest Lab Images](./sd_lab_photos.md)
   - [Systest Topology](./systest_topology.md)
+  - [Systest lab Repro](./systest_lab_repro.md)
+  - [RSI FA Unit2](./MEMY-CCA-AS1-1.md)
 
 - [HW Engineering Summary](./hw_engineering_summary.md)
   - [HW FA #1 - Optics (ODVT) Testing for AEC on QFX5240](./hw_fa_1_optics.md)

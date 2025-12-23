@@ -1,20 +1,18 @@
 # Toggle Fan Speed Randomly
 
-[vrf:none] root@xai-qfx5240-01:/var/tmp/fan# cat usage 
-chmod +x fan_toggle_random.py
 
-#DEFAULT_SPEEDS = [60, 69, 63, 72, 75, 79, 85, 83, 85, 86, 90, 91, 93, 95, 100]
-#Fan Speed Random Toggle Script
-#- Randomly selects fan speed from a given list every interval seconds
-#- Applies the selected speed to trays 0..4 using Junos 'cli -c' commands
-#- Ctrl+C to stop gracefully
-#
+- DEFAULT_SPEEDS = [60, 69, 63, 72, 75, 79, 85, 83, 85, 86, 90, 91, 93, 95, 100]
+- Fan Speed Random Toggle Script
+- Randomly selects fan speed from a given list every interval seconds
+- Applies the selected speed to trays 0..4 using Junos 'cli -c' commands
+- Ctrl+C to stop gracefully
+
 
  
 Example: 
 
 Trays 0-3, run 10 iterations, 2-minute interval
-##### ./fan_toggle_random.py --trays 0,1,2,3 --iterations 10 --interval 120
+- python3 fan_toggle_random.py --trays 0,1,2,3 --iterations 10 --interval 120
 
 ```python
 #fan_toggle_random.py
