@@ -21,5 +21,6 @@
     - [Server Logs - BF3 NIC](./log_collection_server_logs_bf3.md)
     - [Stress Testing](./log_collection_stress_testing.md)
     - [Toggle Fan Speed](./fan_toggle_random.md)
+    - [Micro Flap Detection](./micro_flap_detection.md)
 
 - [Remediation and Root Cause](./remediation.md)
