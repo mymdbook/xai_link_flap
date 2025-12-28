@@ -44,6 +44,62 @@ Dec  5 17:51:31  xai-qfx5240-01 mib2d[14567]: SNMP_TRAP_LINK_UP: ifIndex 754, if
 
 Then at Dec 02:08 , 02:56:, 08:00, 08:12,08:49,11:24,11:46,13:46,13:57,16:04,16:51 … until Dec 7 11:15 AM when ports were changed.
 
+root@xai-qfx5240-01> show chassis hardware 
+Hardware inventory:
+Item             Version  Part number  Serial number     Description
+Chassis                                AO40023030        QFX5240-64OD
+PSM 0                                  6U6LX010130122W   AC AFO 3000W PSU
+PSM 1                                  6U6LX010130124P   AC AFO 3000W PSU
+Routing Engine 0          BUILTIN      BUILTIN           RE-QFX5240
+CB 0             REV 03   650-175147   AO40023030        QFX5240-64OD
+FPC 0                     BUILTIN      BUILTIN           QFX5240-64OD
+  PIC 0                   BUILTIN      BUILTIN           64X800G-OSFP
+    Xcvr 0       XXXX     NON-JNPR     BL8J44X515001K6   UNKNOWN
+    Xcvr 1       REV 01   740-174933   1A1CVWA91103U     OSFP-800G-DR8-P
+    Xcvr 2       REV 01   740-177856   1G1CHTF917018     OSFP-800G-VR8-DUAL-MPO
+    Xcvr 3       REV 01   740-177856   1G1CHTF91702N     OSFP-800G-VR8-DUAL-MPO
+    Xcvr 4       REV 01   740-174938   1G1THKA946002     OSFP-800G-8x100G-FR1
+    Xcvr 5       REV 01   740-174933   1A1CVWA911024     OSFP-800G-DR8-P
+    Xcvr 6       REV 01   740-183989   1W1CJAAA0200L     OSFP-800G-DR8-LPO
+    Xcvr 7       REV 01   740-174933   1A1CVWA91102P     OSFP-800G-DR8-P
+    Xcvr 8       REV 01   740-174933   1A1CVWA91104H     OSFP-800G-DR8-P
+    Xcvr 9       REV 01   740-174933   1G1TVWA93704T     OSFP-800G-DR8-P
+    Xcvr 10      REV 01   740-174933   1G1TVWA937061     OSFP-800G-DR8-P
+    Xcvr 11      REV 01   740-174933   1G1TVWA9360SF     OSFP-800G-DR8-P
+    Xcvr 12      REV 01   720-183903   1M1C8JA948021     OSFP-2x400G-CR4-CU-1M
+    Xcvr 13      REV 01   740-174933   1A1CVWA9090C2     OSFP-800G-DR8-P
+    Xcvr 14      REV 01   740-174933   1G1TVWA9230DP     OSFP-800G-DR8-P
+    Xcvr 15      REV 01   740-174933   1G1TVWA9230D7     OSFP-800G-DR8-P
+    Xcvr 16      REV 01   740-174937   1F1CVYA84100B     OSFP-2x400G-LR4-10
+    Xcvr 17      REV 01   740-174937   1F1CVYA841007     OSFP-2x400G-LR4-10
+    Xcvr 18      REV 01   740-174933   1G1TVWA92302J     OSFP-800G-DR8-P
+    Xcvr 19      REV 01   740-174933   1A1CVWA91102Z     OSFP-800G-DR8-P
+    Xcvr 20      REV 01   720-183903   1M1C8JA948039     OSFP-2x400G-CR4-CU-1M
+    Xcvr 21      REV 01   740-174933   1A1CVWA911023     OSFP-800G-DR8-P
+    Xcvr 22      REV 01   740-174933   1A1MVWA9290GL     OSFP-800G-DR8-P
+    Xcvr 23      REV 01   740-174933   1A1CVWA90901N     OSFP-800G-DR8-P
+    Xcvr 24      XXXX     NON-JNPR     BL8J435515000KY   UNKNOWN
+    Xcvr 25      REV 01   720-183903   1M1C8JA948044     OSFP-2x400G-CR4-CU-1M
+    Xcvr 26      REV 02   740-177856   1G3CHTF9474LW     OSFP-800G-VR8-DUAL-MPO
+    Xcvr 27      REV 01   740-177856   2Q1CHTF918H22     OSFP-800G-VR8-DUAL-MPO
+    Xcvr 28      REV 01   720-183903   1M1C8JA948026     OSFP-2x400G-CR4-CU-1M
+    Xcvr 29      REV 01   720-183903   1M1C8JA948009     OSFP-2x400G-CR4-CU-1M
+    Xcvr 30      XXXX     NON-JNPR     BL8J44X515002M4   UNKNOWN
+    Xcvr 31      REV 01   740-174933   1A1CVWA9090C5     OSFP-800G-DR8-P
+    Xcvr 32      REV 01   720-183903   1M1C8JA948019     OSFP-2x400G-CR4-CU-1M
+    Xcvr 33      REV 01   720-183903   1M1C8JA948034     OSFP-2x400G-CR4-CU-1M
+    Xcvr 34      XXXX     NON-JNPR     BL8J435515000F7   UNKNOWN
+    Xcvr 35      REV 01   740-174933   1A1CVWA908009     OSFP-800G-DR8-P
+    Xcvr 60      REV 01   740-174933   1G1TVWA9361T9     OSFP-800G-DR8-P
+    Xcvr 61      REV 01   740-174933   1A1CVWA9090C3     OSFP-800G-DR8-P
+    Xcvr 62      REV 01   740-174933   1A1CVWA91101V     OSFP-800G-DR8-P
+    Xcvr 63      REV 01   740-174933   1A1CVWA911007     OSFP-800G-DR8-P
+Fan Tray 0                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 1                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 2                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+Fan Tray 3                                               QFX5240-64OD/QFX5240-64QD Fan Tray, Front to Back Airflow - AFO
+ 
+ 
 ```
 
 
