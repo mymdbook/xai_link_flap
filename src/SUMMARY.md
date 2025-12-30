@@ -25,5 +25,6 @@
     - [Micro Flap Detection](./micro_flap_detection.md)
     - [PRBS Test](./PRBS.md)
     - [Voltage Margin Test](./voltage_margin_test.md)
+    - [APLL-DPLL Monitoring](./apll_dpll_monitoring.md)
 
 - [Remediation and Root Cause](./remediation.md)

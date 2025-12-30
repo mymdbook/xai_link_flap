@@ -39,6 +39,21 @@ Yocto: 3.0.2
 Linux Kernel: 5.2.60-yocto-standard-g72d147e
 JUNOS-EVO OS 64-bit [junos-evo-install-qfx-ms-x86-64-23.4X100-D40.7-EVO]
 
+
+## Credo AEC cable description (post D43 credo Y cables were recognized)
+root@la-q5240-08:pfe> show picd optics qsfpdd fpc_slot 0 pic_slot 0 port 27 cmd advertised_applications                                                                                                                      
+                                                                                                                                                                                                                             
+xcvr-0/0/27:                                                                                                                                                                                                                 
+Ap Sel  Host Intf Code                          Media Intf Code                         Host Lanes          Media Lanes         Host Assign         Media Assign                                                             
+1       100GAUI-1-S C2M (Annex 120G)  (75)   AOC                           (4)   1                   1                   255                 255                                                                             
+2       100GAUI-1-L C2M (Annex 120G)  (76)   AOC                           (4)   1                   1                   255                 255                                                                             
+3       200GAUI-2-S C2M (Annex 120G)  (77)   AOC                           (4)   2                   2                   85                  85                                                                              
+4       200GAUI-2-L C2M (Annex 120G)  (78)   AOC                           (4)   2                   2                   85                  85                                                                              
+5       400GAUI-4-S C2M (Annex 120G)  (79)   AOC                           (4)   4                   4                   17                  17                                                                              
+6       400GAUI-4-L C2M (Annex 120G)  (80)   AOC                           (4)   4                   4                   17                  17                                                                              
+                                                      
+                                                      
+                                                      
 root@xai-qfx5240-01> show chassis hardware detail 
 Hardware inventory:
 Item             Version  Part number  Serial number     Description
