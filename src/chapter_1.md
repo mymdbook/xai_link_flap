@@ -40,6 +40,36 @@
 - Customer impact: transient 5xx spikes (~3% for ~12 minutes) and p95 latency regression (+250–400 ms) until traffic drained off the flapping link.
 - Mitigation: disabled the unhealthy link in the port-channel, forced traffic to the healthy member, replaced the suspect optic, and re-enabled after burn-in.
 
+## Customer Process
+
+- Zeroize from computer center
+- Send to data center
+- Physically connect with cables in data center on servers, spectrum, QFX5240, management. Get the whole data center. But not powered on.
+- Power up management switches
+- Power up the QFX5240.
+- Through ZTP configuration is pushed.
+- someone verifies if all is okay.
+- Power up spectrum switches.
+- Then the servers are brought up.
+- server does ztp via management (not through QFX5240) 
+- Configuration is pushed to server via ztp. --> no server team to confirm what is pushed here.
+ 
+
+In a rack, there are some management switches at the top,  followed by console switch and one QFX, then 4 spectrum devices. Customer mentioned it is 20cms gap between each switches.
+
+Each server rack has PDUs at the top and bottom. In between there are 18 servers. 10 servers, followed by console switches, then 8 servers. 
+
+In total, there are 5 racks, 4 server racks and one switch rack. For QFX one port connects to each server BF3 NICs, so in total 18x4 across the racks.
+
+They have BM300 Nvidia servers. Each server has two 2-ports cx Nic cards and one  2-ports BF3. One port of CX7 connects to one spectrum switch, so 4 ports to 4 different switches in the rack. One port from the BF3 connects to the QFX.
+
+Now, coming to traffic, the server to Juniper connection is not for ROCEv2 traffic. The spectrum switches connects uplink towards the T1 in the same DH, then T1 connects to T2 in master core room. T3 layer connects with the T2 layer. All the spectrum switches connects on the upper layers only to spectrum. All the training of GPU happens only via spectrum. 
+
+Juniper switches similarly connects to only Juniper switches are different layers. Juniper devices that connects to servers acts as a g/w to those servers. When customers use grok to generate image or video, that traffic can come into the servers. Also we act as g/w to connect to storage which has templates for image/video generation.
+
+All the traffic data hall to data hall are rocev2, uses nvidia spectrum. DCI connection is at the T3 layer.
+Sending some pictures that was taken at data center today. Dont sell me out . Customer said dont post it in social media.
+
 ## Current Status
 
 Dated: Dec/22/2025
