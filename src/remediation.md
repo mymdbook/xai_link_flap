@@ -1,24 +1,118 @@
-# Remediation and Root Cause
 
-## Root Cause
-- The failing optic on one TOR-to-aggregation uplink introduced intermittent loss, triggering link flaps and BFD resets.
-- CRC/input error counters spiked prior to each flap; no corresponding errors on the peer interface, pointing to a local optic/cable issue.
-- No concurrent config changes or software upgrades were recorded, reducing likelihood of a control-plane bug.
+## **Date:** 2-Jan-2025
 
-## Immediate Remediation Steps
-1. Validate redundancy and available capacity on the healthy uplink.
-2. Administratively disable the flapping port-channel member to force ECMP hashing away from it.
-3. Capture interface counters and logs for the post-incident review.
-4. Swap the optic (and cable if needed), bring the member back up, and monitor for 20–30 minutes.
-5. Re-enable the member once error-free and restore normal traffic distribution.
+# Write-up for the Clock Changes Proposed for QFX5240-64OD
+---
 
-## Validation Performed
-- 60-minute burn-in showed zero CRC/BFD events on the replaced optic.
-- Service SLOs (p95 latency, 5xx rate) returned to baseline within minutes of draining the bad link.
-- Packet captures on the affected hosts no longer showed retransmit bursts once the link was stable.
+## Problem Statement
+All server-facing ports flap at random across multiple Juniper QFX5240-64OD access switches.
 
-## Preventative Actions
-- Add CRC growth and sub-minute flap alerts for all xAI TOR uplinks.
-- Ensure paired uplinks are load-tested monthly to verify failover capacity.
-- Keep a small pool of tested spare optics per AZ and document serials in the asset tracker.
-- Include interface error deltas in the oncall dashboard to shorten detection-to-mitigation time.
+---
+
+## Description
+There are multiple fronts for the issue of troubleshooting ranging from temperature to power to internal clocks. The depth of individual testing might be time-consuming and hence we propose a preventive measure by isolating a source of clock from the critical path.
+
+The plan is to roll out the changes in **5 devices** where we have seen flaps recently and observe if there are any undesirable issues. Based on the outcome, we can roll out the same changes to other switches in **DH3**.
+
+---
+
+## Proposed Rollout Plan
+
+### **Phase 1 – DH3 through Scripts**
+- **Day 0:** 5 devices  
+- **Day 1:** Additional 25 devices  
+- **Day 2:** Entire data hall  
+- **Monitor:** Overall DH3 health for a week  
+- **Caveats:** Script requires execution after every power cycle/reboot  
+
+### **Phase 2 – Software Patch**
+- All data halls  
+- **Targeted timeline:** 01/08/2025  
+
+### **Phase 3 – Software Upgrade**
+- Upcoming deployments  
+- D44 image will also have enhancements for other xAI asks  
+- **Targeted timeline:** 4th week of January  
+
+---
+
+## Detailed Description
+The QFX5240 uses a clock synthesizer to generate TH5 reference clocks. This synthesizer has its own crystal and can generate TH5 clocks independently, but it can also synchronize its clock output to another clock source. On the QFX5240, the other clock source comes from a second clocking device used for synchronous ethernet and PTP boundary clocking.
+
+Since these modes are not in use, the first change is to have the clock synthesizer generate the TH5 clock on its own rather than synchronizing to the second device. The second change involves updating a synthesizer parameter recommended by the vendor to improve stability.
+
+---
+
+## Commands
+
+### **To Configure**
+```bash
+i2cset -y 1 9 0xfd 0x5; i2cset -y 1 9 0x4 0x62
+i2cset -y 1 9 0xfd 0x2; i2cset -y 1 9 0x40 0x18
+```
+
+---
+
+## To Verify
+```bash
+i2cset -y 1 9 0xfd 0x5; i2cget -y 1 9 0x4
+# Expected: 0x62 (verifies last written)
+```
+
+```bash
+i2cset -y 1 9 0xfd 0x2; i2cget -y 1 9 0x40
+# Expected: 0x18 (verifies last written)
+```
+
+---
+
+## Rollback Strategies
+
+### **Option 1 – Power Cycle (Preferred)**
+- i2c registers reset after a power cycle.  
+- A normal reboot will **not** reset these values.
+
+### **Option 2 – Unset i2c values via command**
+```bash
+i2cset -y 1 9 0xfd 0x5; i2cset -y 1 9 0x4 0x66
+i2cset -y 1 9 0xfd 0x2; i2cset -y 1 9 0x40 0x78
+```
+> ⚠️ This option puts the isolated clock back in the critical path and may lead to interface flaps. Contact JTAC if undesired behavior occurs.
+
+---
+
+## JSU Installation and Options
+
+**Image location:**  
+`/volume/evoimages/release/evo/rel/23.4X100-D40-J1/rel_23.4X100-D40-J1.1`  
+Apply on top of `23.4X100-D40.7-EVO`.
+
+### **Test Scenarios**
+
+#### **Scenario 1: System already configured with i2cset commands**
+Do not reboot after JSU installation. Stage JSU and let the system run for a day, then power-cycle and verify:
+```bash
+request system software add /var/tmp/junos-evo-install-qfx-ms-x86-64-23.4X100-D40-J1.1-EVO.iso
+```
+Verify:
+```bash
+i2cset -y 1 9 0xfd 0x5; i2cget -y 1 9 0x4
+i2cset -y 1 9 0xfd 0x2; i2cget -y 1 9 0x40
+show trace application clockd | grep RS32312
+```
+
+#### **Scenario 2: System not configured with i2cset commands**
+Use reboot option:
+```bash
+request system software add /var/tmp/junos-evo-install-qfx-ms-x86-64-23.4X100-D40-J1.1-EVO.iso reboot
+```
+
+#### **Scenario 3: Apply JSU with restart option**
+Recommended for X.AI if systems are on UTC:
+```bash
+request system software add /var/tmp/junos-evo-install-qfx-ms-x86-64-23.4X100-D40-J1.1-EVO.iso restart
+```
+
+---
+
+**Juniper Business Use Only**
