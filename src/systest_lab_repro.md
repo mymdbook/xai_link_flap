@@ -226,4 +226,11 @@ Here are the action item for today
 
 reboot - request system reboot	 
 power cycle - request system power-cycle	
- 
+
+## Jan/12/2025
+- serve reboot: 1 server reboot; 2 servers reboot; all servers reboot
+- block front air holes to check temp changes
+- no AEC connections between DUT switch and supporting QD switches -> modify topo
+- flap ports 25-35, 2 hours & stop to continue monitor
+- re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
+
