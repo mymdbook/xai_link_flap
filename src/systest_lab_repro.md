@@ -105,7 +105,7 @@ Fan Tray 3                                               QFX5240-64OD/QFX5240-64
 
 ## Dec/8/2025
 
-```
+
 ## 2nd replication attempt: 12/8/2025
 
 
@@ -139,7 +139,7 @@ New AEC cables from q5240-05 are moved to ports 13 and 14 peering with QD. Remov
 
 If the issue goes away ( to have some logic) would prefer running the autoneg/speed/duplex change sequence in one or both servers without moving the AEC cable out of the FA box for say two hours and later monitor for the issue over 24 hours. If the issue not seen, may be try OIR of the specific AEC cables.
 
-```
+
 
 
 ## Dec/23/2025
@@ -228,9 +228,10 @@ reboot - request system reboot
 power cycle - request system power-cycle	
 
 ## Jan/12/2025
+```
 - serve reboot: 1 server reboot; 2 servers reboot; all servers reboot
 - block front air holes to check temp changes
 - no AEC connections between DUT switch and supporting QD switches -> modify topo
 - flap ports 25-35, 2 hours & stop to continue monitor
 - re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
-
+```
