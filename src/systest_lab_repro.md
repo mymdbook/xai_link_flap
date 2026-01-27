@@ -277,17 +277,6 @@ power cycle - request system power-cycle
 san-q5240-q03 | LAB119568 | qfx5240-64qd | San Diego (A.7.075) | A24 | 28
 ```
 
-### Reservation Information
-
-| Field     | Value |
-|----------|-------|
-| id       | 313168043 |
-| bind_id  | 76880372 |
-| unit     | san-q5240-q03 |
-| model    | QFX5240-64QD-AO |
-| by_userid| yuche |
-| start_at | 2026-01-20 12:41 PST |
-| end_at   | 2026-05-20 13:41 PDT |
 
 **Observation:**  
 Device was found **powered off** due to a **loose power cord**.
