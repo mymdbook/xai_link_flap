@@ -235,3 +235,117 @@ power cycle - request system power-cycle
 - flap ports 25-35, 2 hours & stop to continue monitor
 - re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
 ```
+
+**Latest replication on xai-02 – 01/25**
+
+# XAI-02 Replication Log  
+
+## Summary of Actions
+
+1. **Device relocation**
+   - `xai-02` moved to **D44.1** to test source photonics issue and verify PRs.
+
+2. **Power cycle testing**
+   - Performed multiple power cycle tests on `xai-02` and peer device for **DR8** with `san-q5240-08`.
+
+3. **Image validation**
+   - Arun’s private image loaded to check DR8 issue.
+
+4. **Further power cycling**
+   - Device moved back to **D44.1**.
+   - Power cycle tests repeated on `xai-02` and `san-q5240-08`.
+
+5. **Rack movement and testing**
+   - `xai-02` moved to **D40**, then back to **D44.1**.
+   - Power cycle tests executed on `xai-02` and `san-q5240-08`.
+
+6. **Topology change**
+   - `xai-02` peered with:
+     - `san-q5240-q03` using **source photonics optic**
+     - `san-q5240-08` on one port  
+   - This setup includes **customer QD optics**.
+
+---
+
+## Device Details
+
+```
+san-q5240-q03 | LAB119568 | qfx5240-64qd | San Diego (A.7.075) | A24 | 28
+```
+
+### Reservation Information
+
+| Field     | Value |
+|----------|-------|
+| id       | 313168043 |
+| bind_id  | 76880372 |
+| unit     | san-q5240-q03 |
+| model    | QFX5240-64QD-AO |
+| by_userid| yuche |
+| start_at | 2026-01-20 12:41 PST |
+| end_at   | 2026-05-20 13:41 PDT |
+
+**Observation:**  
+Device was found **powered off** due to a **loose power cord**.
+
+---
+
+## Optic Movement
+
+Moved optic **P8TT005726 – QSFP-DD800-8x100G-DR8** to `san-q5240-q03`.
+
+```
+root@san-q5240-q03> show chassis hardware | match "Xcvr 60"
+Xcvr 60 XXXX NON-JNPR P8TT005726 QSFP-DD800-8x100G-DR8
+```
+
+---
+
+## Power Cycle Events
+
+```
+482 23/01/26 17:50:00 ltPwr -f xai-qfx5240-02
+483 23/01/26 17:50:12 ltPwr -f san-q5240-q03
+484 23/01/26 18:21:23 ltPwr -n san-q5240-q03
+485 23/01/26 18:21:39 ltPwr -n xai-qfx5240-02
+```
+
+---
+
+## Fan Script & Flap Observations
+
+- Fan speed changed **65% → 90% → 65%**
+- All **AECs flapped**
+- Server ports flapped with **12–13 seconds** between down/up
+- QD ports showed micro and transient flaps
+
+---
+
+## Flap Timeline
+
+### Saturday – 01/24
+- Jan 24 13:30:02
+- Jan 24 17:27:45
+
+### Sunday – 01/25
+- Jan 25 16:02:10
+- Jan 25 20:11:23
+
+### Monday – 01/26
+- Jan 26 12:59:33 UTC
+- Jan 26 13:02:00 UTC
+- Jan 26 15:19:16 UTC
+
+### Tuesday – 01/27
+- Jan 27 14:29:51
+- Jan 27 14:59:23
+
+---
+
+## Notes / Open Questions
+
+1. Upgrade sequence **D44.1 → D40** with power cycling.
+2. Fan control script impact.
+3. Organic flapping on **et-0/0/27:1**.
+4. Addition of customer QD optics and new device `san-q5240-q03`.
+
