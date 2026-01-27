@@ -246,7 +246,7 @@ power cycle - request system power-cycle
 
 ### Summary of Actions
 
-1. **Device relocation**
+1. **test source photonics**
    - `xai-02` moved to **D44.1** to test source photonics issue and verify PRs.
 
 2. **Power cycle testing**
@@ -259,7 +259,7 @@ power cycle - request system power-cycle
    - Device moved back to **D44.1**.
    - Power cycle tests repeated on `xai-02` and `san-q5240-08`.
 
-5. **Rack movement and testing**
+5. **image movement**
    - `xai-02` moved to **D40**, then back to **D44.1**.
    - Power cycle tests executed on `xai-02` and `san-q5240-08`.
 
