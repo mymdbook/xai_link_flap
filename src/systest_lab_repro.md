@@ -1,7 +1,8 @@
 
-## Dec/4/2025
+**Dec/4/2025**
+### First time replication: 12/4/2025
+
 ```
-First time replication: 12/4/2025
 
 Made the connection around 6PM and left it overnight.
 san-rt-ai-srv01 and srv02 connected to san-q5240-09
@@ -103,10 +104,10 @@ Fan Tray 3                                               QFX5240-64OD/QFX5240-64
 ```
 
 
-## Dec/8/2025
+**Dec/8/2025**
 
 
-## 2nd replication attempt: 12/8/2025
+### 2nd replication attempt: 12/8/2025
 
 
  Below steps were done
@@ -142,9 +143,9 @@ If the issue goes away ( to have some logic) would prefer running the autoneg/sp
 
 
 
-## Dec/23/2025
+**Dec/23/2025**
 
-Dec/23/2025: Lab Repro Attempt by changing PLL Value
+### Dec/23/2025: 3rd Lab Repro Attempt by changing PLL Value
 
 ```
 -> Computer Center: Check the PLL value
@@ -194,7 +195,9 @@ i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
 ```
 
 
-## Dec/24/2025
+**Dec/24/2025**
+### 4th replication attempt
+
 Here are the action item for today
 - Start the bursty traffic on new FA unit (xai-qfx5240-03) -> Sanjay
 - Move CX8 NIC to MAitreya -> Sanjay
@@ -227,7 +230,8 @@ Here are the action item for today
 reboot - request system reboot	 
 power cycle - request system power-cycle	
 
-## Jan/12/2025
+**Jan/12/2025**
+### 5th replication attempt: Jan/12/2025
 ```
 - serve reboot: 1 server reboot; 2 servers reboot; all servers reboot
 - block front air holes to check temp changes
@@ -236,11 +240,11 @@ power cycle - request system power-cycle
 - re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
 ```
 
-**Latest replication on xai-02 – 01/25**
+**Latest replication on xai-02 – Jan/25/2026**
 
-# XAI-02 Replication Log  
+## XAI-02 Replication Log  
 
-## Summary of Actions
+### Summary of Actions
 
 1. **Device relocation**
    - `xai-02` moved to **D44.1** to test source photonics issue and verify PRs.
