@@ -1,5 +1,6 @@
 
 **Dec/4/2025**
+
 ### First time replication: 12/4/2025
 
 ```
@@ -196,6 +197,7 @@ i2cset -y 1 0x9 0xfd 0x5; i2cget -y 1 0x9 0x72
 
 
 **Dec/24/2025**
+
 ### 4th replication attempt
 
 Here are the action item for today
@@ -230,7 +232,10 @@ Here are the action item for today
 reboot - request system reboot	 
 power cycle - request system power-cycle	
 
+
+
 **Jan/12/2025**
+
 ### 5th replication attempt: Jan/12/2025
 ```
 - serve reboot: 1 server reboot; 2 servers reboot; all servers reboot
