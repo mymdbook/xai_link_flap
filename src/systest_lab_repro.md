@@ -252,11 +252,11 @@ power cycle - request system power-cycle
 ### Summary of Actions
 
 1. **test source photonics**
-   - `xai-02` moved to **D44.1** to test source photonics issue and verify PRs.
-1927771-1 - Garnet - Hardening of clocking initialization to prevent link-flaps 
-1927780-1 - [Garnet] :: Temperature threshold values are not showing for AEC cables
-1930806-1 - QFX5240-64OD: Add periodic logging of sensor and fan data
-1932323-1 - QFX5240: monitor the changes in APLL LOL counter.
+- `xai-02` moved to **D44.1** to test source photonics issue and verify PRs.
+	- 1927771-1 - Garnet - Hardening of clocking initialization to prevent link-flaps 
+	- 1927780-1 - [Garnet] :: Temperature threshold values are not showing for AEC cables
+	- 1930806-1 - QFX5240-64OD: Add periodic logging of sensor and fan data
+	- 1932323-1 - QFX5240: monitor the changes in APLL LOL counter.
 
 
 2. **Power cycle testing**
