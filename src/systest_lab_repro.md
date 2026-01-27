@@ -234,7 +234,7 @@ power cycle - request system power-cycle
 
 
 
-**Jan/12/2025**
+## Jan/12/2025 
 
 ### 5th replication attempt: Jan/12/2025
 ```
@@ -244,6 +244,8 @@ power cycle - request system power-cycle
 - flap ports 25-35, 2 hours & stop to continue monitor
 - re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
 ```
+
+## Jan/25/2025
 
 ## XAI-02 Replication Log  
 
