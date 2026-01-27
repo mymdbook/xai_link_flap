@@ -245,8 +245,6 @@ power cycle - request system power-cycle
 - re-install CX-7 NIC back to servers so the server has both BF3 / CX-7 cards
 ```
 
-**Latest replication on xai-02 – Jan/25/2026**
-
 ## XAI-02 Replication Log  
 
 ### Summary of Actions
